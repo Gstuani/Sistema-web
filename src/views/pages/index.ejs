@@ -1,0 +1,52 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Workers'}) %>
+
+
+  <% authentication.forEach(auth => { %>
+  <article class="larg">
+    <div>
+      <h3><%= auth.name %>  <span class="entypo-down-open"></span></h3>
+      <p>
+        <span>
+          <%= auth.email %>
+        </span>
+      </p>
+      <p>
+        <span>
+          function: <%= auth.function %>
+        </span>
+      </p>
+      <p class="card-footer-item">
+        <span>
+          <a href="/controller/<%= auth._id %>?_method=delete" class="has-text-danger">Remover a permissão deste funcionario</a>
+        </span>
+      </p>
+    </div>
+  </article>
+  <% }) %>
+
+</main>
+<!-- partial -->
+  <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script>
+    $(document).ready( function() {
+      
+      $('body').on("click", ".larg div h3", function(){
+        if ($(this).children('span').hasClass('close')) {
+          $(this).children('span').removeClass('close');
+        }
+        else {
+          $(this).children('span').addClass('close');
+        }
+        $(this).parent().children('p').slideToggle(250);
+      });
+      
+      $('body').on("click", "nav ul li a", function(){
+        var title = $(this).data('title');
+        $('.title').children('h2').html(title);
+      });
+    });
+    </script>
+
+<%- include('../layout/footer') %>
