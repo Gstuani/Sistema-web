@@ -3,7 +3,7 @@ const utils = require('applay-utils');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  res.render('registro');
+  res.render('pages/registro' , { messages: {} }) ;
 });
   
 
@@ -12,22 +12,23 @@ router.get('/', (req, res) => {
     const user = {
       name,
       email,
-      password
+      password,
+      permission: false
     };
     if (!name || !email || !password) {
-      return res.render('registro', { messages: { error: 'Todos os campos são obrigatórios' } });
+      return res.render('pages/registro', { messages: { error: 'Todos os campos são obrigatórios' } });
     } else if (password.length < 6) {
-      return res.render('registro', { messages: { error: 'A senha deve ter no mínimo 6 caracteres' } });
+      return res.render('pages/registro', { messages: { error: 'A senha deve ter no mínimo 6 caracteres' } });
     } else {
       try {
         const userExists = await req.db.collection('authentication').findOne({ "user.email": email });
         if (userExists) {
-          return res.render('registro', { messages: { error: 'Email já cadastrado' } });
+          return res.render('pages/registro', { messages: { error: 'Email já cadastrado' } });
         }
         await utils.insertOne(req.db, 'authentication', user);
-        return res.redirect('/login', { messages: { error: 'aguarde a liberação' } });
+        return res.status(200).redirect('/login');
       } catch (error) {
-        return res.render('registro', { messages: { error: 'Erro ao salvar usuário' } });
+        return res.render('pages/registro', { messages: { error: 'Erro ao salvar usuário' } });
       }
     }
 });

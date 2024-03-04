@@ -17,6 +17,10 @@ router.get('/registro', async (req, res) => {
 //   res.render('index', { name: user.name });
 // });
 
+router.get('/controller', async (req, res) => {
+  res.render('controller', { messages: {} }, { name: user.name });
+});
+
 
 router.delete('/logout', (req, res) => {
   req.session.destroy(err => {
