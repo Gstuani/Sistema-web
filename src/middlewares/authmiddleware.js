@@ -17,8 +17,8 @@ function ensureAuthenticated(req, res, next) {
         const accessRules = {
             'D': ['/home', '/page1'],
             'C': ['/home', '/page1', '/page2'],
-            'B': ['/home', '/page1', '/page2', '/page3'],
-            'A': ['/home', '/page1', '/page2', '/page3', '/page4'],
+            'B': ['/home', '/page1', '/page2', '/page3', '/clientes'],
+            'A': ['/home', '/page1', '/page2', '/page3', '/page4', '/clientes'],
         };
 
         if (accessRules[accessKey].includes(route)) {

@@ -7,6 +7,7 @@ const userRouter = require('./src/routes/user');
 const loginRouter = require('./src/routes/login');
 const funcRouter = require('./src/routes/func');
 const accessRouter = require('./src/routes/accessKey');
+const clientsRouter = require('./src/routes/clients');
 const pagesRouter = require('./src/routes/pages');
 
 const port = 3050;
@@ -20,6 +21,11 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use(async (req, res, next) => {
     var client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
     req.db = client.db('dashboard');
+    next();
+});
+app.use(async (req, res, next) => {
+    var client2 = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
+    req.db2 = client2.db('client');
     next();
 });
 app.engine('html', require ('ejs').renderFile);
@@ -38,6 +44,7 @@ app.use('/', loginRouter);
 app.use('/', userRouter);
 app.use('/', funcRouter);
 app.use('/', accessRouter);
+app.use('/', clientsRouter);
 app.use('/', pagesRouter);
 
 

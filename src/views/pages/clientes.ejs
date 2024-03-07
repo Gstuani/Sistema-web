@@ -1,0 +1,61 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Clientes'}) %>
+
+
+
+
+
+<section class="section hero is-link is-fullheight-with-navbar">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h2 class="subtitle">
+          Todos os resgistros dos clientes
+        </h2>
+      </div>
+    </div>
+
+  <% clientes.forEach(users => { %>
+    <article class="larg">
+        <div>
+            <h3><%= users.name %>  <span class="entypo-down-open"></span></h3>
+            <p>
+                <span>
+                    <%= users.email %>
+                </span>
+            </p>
+            <p>
+                <span>
+                    <a href="/clientes/<%= users._id %>?_method=delete">Remover usuario do banco de dados</a>
+                </span>
+            </p>
+        </div>
+    </article>
+<% }) %>
+</section>
+
+  </main>
+  <!-- partial -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script>
+      $(document).ready( function() {
+        
+        $('body').on("click", ".larg div h3", function(){
+          if ($(this).children('span').hasClass('close')) {
+            $(this).children('span').removeClass('close');
+          }
+          else {
+            $(this).children('span').addClass('close');
+          }
+          $(this).parent().children('p').slideToggle(250);
+        });
+        
+        $('body').on("click", "nav ul li a", function(){
+          var title = $(this).data('title');
+          $('.title').children('h2').html(title);
+        });
+      });
+      </script>
+  
+
+  <%- include('../layout/footer') %>
