@@ -4,12 +4,13 @@ const path = require('path');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const userRouter = require('./src/routes/user');
-const controlRouter = require('./src/routes/controller');
 const loginRouter = require('./src/routes/login');
+const funcRouter = require('./src/routes/func');
+const accessRouter = require('./src/routes/accessKey');
+const pagesRouter = require('./src/routes/pages');
 
 const port = 3050;
 const app = express();
-
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method', { methods: ['POST', 'GET', "PUT"]}));
@@ -31,10 +32,14 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
   }));
-  
-app.use('/login', loginRouter);
-app.use('/registro', userRouter);
-app.use('/controller', controlRouter);
+
+
+app.use('/', loginRouter);
+app.use('/', userRouter);
+app.use('/', funcRouter);
+app.use('/', accessRouter);
+app.use('/', pagesRouter);
+
 
 app.listen(port, async () => {
     console.log('Servidor foi iniciado');

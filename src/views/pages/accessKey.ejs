@@ -1,0 +1,79 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Home'}) %>
+
+
+
+
+
+<section class="section hero is-link is-fullheight-with-navbar">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h2 class="subtitle">
+          Geranciando as keys de acesso de funcionários
+        </h2>
+      </div>
+    </div>
+
+  <% authentication.forEach(auth => { %>
+    <article class="larg">
+        <div>
+            <h3><%= auth.name %>  <span class="entypo-down-open"></span></h3>
+            <p>
+                <span>
+                    <%= auth.email %>
+                </span>
+            </p>
+            <p>
+                <span>
+                    function: <%= auth.func %>
+                </span>
+            </p>
+            <p>
+                <span>
+                    Acesskey: <%= auth.accessKey %>
+                </span>
+            </p>
+
+            <!-- Formulário para alterar a chave de acesso -->
+            <form action="/accessKey" method="post">
+                <input type="hidden" name="userId" value="<%= auth._id %>">
+                <select name="newAccessKey">
+                    <option value="D">D</option>
+                    <option value="C">C</option>
+                    <option value="B">B</option>
+                    <option value="A">A</option>
+                    <option value="S">S</option>
+                </select>
+                <button type="submit">Alterar chave de acesso</button>
+            </form>
+        </div>
+    </article>
+<% }) %>
+</section>
+
+  </main>
+  <!-- partial -->
+    <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+    <script>
+      $(document).ready( function() {
+        
+        $('body').on("click", ".larg div h3", function(){
+          if ($(this).children('span').hasClass('close')) {
+            $(this).children('span').removeClass('close');
+          }
+          else {
+            $(this).children('span').addClass('close');
+          }
+          $(this).parent().children('p').slideToggle(250);
+        });
+        
+        $('body').on("click", "nav ul li a", function(){
+          var title = $(this).data('title');
+          $('.title').children('h2').html(title);
+        });
+      });
+      </script>
+  
+
+  <%- include('../layout/footer') %>
