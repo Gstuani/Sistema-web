@@ -6,78 +6,76 @@
   <main>
     <div class="title1">
       <h2><%= title1 %></h2>
-      <a href="javascript:void(0);">Hello 
-  
-      </a>
+      <a href="javascript:void(0);">Hello </a>
     </div>
 
     <nav class="main-menu">
         <ul>
             <li>
-                <a href="https://jbfarrow.com">
+                <a href="/home">
                     <i class="fa fa-home fa-2x"></i>
                     <span class="nav-text">
-                       Community Dashboard
+                        Dashboard
                     </span>
                 </a>
               
             </li>
             <li class="has-subnav">
-                <a href="#">
+                <a href="/auth">
                     <i class="fa fa-globe fa-2x"></i>
                     <span class="nav-text">
-                        Global Surveyors
+                        colocar permissão
                     </span>
                 </a>
                 
             </li>
             <li class="has-subnav">
-                <a href="#">
+                <a href="/index">
                    <i class="fa fa-comments fa-2x"></i>
                     <span class="nav-text">
-                        Group Hub Forums
+                        tirar permissão
                     </span>
                 </a>
                 
             </li>
             <li class="has-subnav">
-                <a href="#">
+                <a href="/page1">
                    <i class="fa fa-camera-retro fa-2x"></i>
                     <span class="nav-text">
-                        Survey Photos
+                        Page 1
                     </span>
                 </a>
                
             </li>
             <li>
-                <a href="#">
+                <a href="/page2">
                     <i class="fa fa-film fa-2x"></i>
                     <span class="nav-text">
-                        Surveying Tutorials
+                        Page 2
                     </span>
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="/page3">
                     <i class="fa fa-book fa-2x"></i>
                     <span class="nav-text">
-                       Surveying Jobs
+                        Page 3
                     </span>
                 </a>
             </li>
             <li>
-               <a href="#">
+               <a href="/page4">
                    <i class="fa fa-cogs fa-2x"></i>
                     <span class="nav-text">
-                        Tools & Resources
+                        Page 4
                     </span>
                 </a>
             </li>
             <li>
-               <a href="#">
+               <a href="/accessKey">
                     <i class="fa fa-map-marker fa-2x"></i>
                     <span class="nav-text">
-                        Member Map
+                        Accesskey
                     </span>
                 </a>
             </li>
@@ -93,12 +91,10 @@
 
         <ul class="logout" style="padding-bottom: 100px;">
             <li>
-               <a href="#">
-                     <i class="fa fa-power-off fa-2x"></i>
-                    <span class="nav-text">
-                        Logout
-                    </span>
-                </a>
+                <form action="/logout?_method=DELETE" method="POST">
+                    <button class="nav-link fw-bold py-1 px-0 btn p=3 btn-dark text-white" type="submit"  >Logout</button>
+    
+                  </form>
             </li>  
         </ul>
     </nav>

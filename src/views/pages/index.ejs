@@ -1,6 +1,6 @@
 <%- include('../layout/header', {title: 'Dashboard'}) %>
 
-<%- include('../layout/menu', {title1: 'Workers'}) %>
+<%- include('../layout/menu', {title1: 'REMOVE'}) %>
 
 
   <% authentication.forEach(auth => { %>
@@ -14,14 +14,14 @@
       </p>
       <p>
         <span>
-          function: <%= auth.function %>
+          function: <%= auth.func %>
         </span>
       </p>
-      <p class="card-footer-item">
+      <p>
         <span>
-          <a href="/controller/<%= auth._id %>?_method=delete" class="has-text-danger">Remover a permissão deste funcionario</a>
+            <a href="/index/<%= auth._id %>?_method=delete">Remover permissão</a>
         </span>
-      </p>
+    </p>
     </div>
   </article>
   <% }) %>
