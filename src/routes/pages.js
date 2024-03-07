@@ -71,8 +71,18 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
     res.status(500).render('pages/accessKey' , { authentication: authentication});
 });
 
+router.get('/clientes', ensureAuthenticated, async (req, res) => {
+  try {
+    let clientes = await utils.findAsync(req.db2, 'users', {});
+    res.status(200).render('pages/clientes', { clientes: clientes})
+  } catch (error) {
+    res.status(500).render('pages/error', {error: ''});
+  }
+});
+
+
 //logout
-router.delete('/logout', ensureAuthenticated, async (req, res) => {
+router.delete('/logout', async (req, res) => {
   req.session.destroy(err => {
       if (err) return next(err);
       res.redirect('/login');
