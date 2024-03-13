@@ -1,0 +1,15 @@
+<form action="<%= url %>" method="post">
+    <label for="name">Nome:</label><br>
+    <input type="text" id="name" name="name" value="<%= prod.names.name %>" required><br>
+    <label for="id">ID:</label><br>
+    <input type="text" id="id" name="id" value="<%= prod.ids.id %>" required><br>
+    <label for="inStock">Em estoque:</label><br>
+    <input type="checkbox" id="inStock" name="inStock" <%= prod.estoque ? 'checked' : '' %>><br>
+    <label for="priceP">Preço pizza (P):</label><br>
+    <input type="text" id="priceP" name="priceP" value="<%= prod.price[0] %>" required><br>
+    <label for="priceM">Preço pizza (M)</label><br>
+    <input type="text" id="priceM" name="priceM" value="<%= prod.price[1] %>" required><br>
+    <label for="priceG">Preço pizza (G)</label><br>
+    <input type="text" id="priceG" name="priceG" value="<%= prod.price[2] %>" required><br>
+    <input type="submit" value="Enviar">
+</form>

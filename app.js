@@ -9,6 +9,7 @@ const funcRouter = require('./src/routes/func');
 const accessRouter = require('./src/routes/accessKey');
 const clientsRouter = require('./src/routes/clients');
 const pagesRouter = require('./src/routes/pages');
+const productsRouter = require('./src/routes/products');
 
 const port = 3050;
 const app = express();
@@ -18,14 +19,15 @@ app.use(methodOverride('_method', { methods: ['POST', 'GET', "PUT"]}));
 
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
+let client;
+
 app.use(async (req, res, next) => {
-    var client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
+    if (!client) {
+        client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
+    }
     req.db = client.db('dashboard');
-    next();
-});
-app.use(async (req, res, next) => {
-    var client2 = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
-    req.db2 = client2.db('client');
+    req.db2 = client.db('client');
+    req.db3 = client.db('products');
     next();
 });
 app.engine('html', require ('ejs').renderFile);
@@ -46,6 +48,7 @@ app.use('/', funcRouter);
 app.use('/', accessRouter);
 app.use('/', clientsRouter);
 app.use('/', pagesRouter);
+app.use('/', productsRouter);
 
 
 app.listen(port, async () => {

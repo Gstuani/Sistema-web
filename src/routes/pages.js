@@ -38,27 +38,34 @@ router.get('/auth', ensureAuthenticated, async (req, res) => {
 
 //page home
 router.get('/home', ensureAuthenticated, async (req, res) => {
-  res.status(500).render('pages/home');
+  res.status(200).render('pages/home');
   });
   
 //page page1
   router.get('/page1', ensureAuthenticated, async (req, res) => {
-    res.status(500).render('pages/page1');
+    res.status(200).render('pages/page1');
   });
 
   //page page2
-  router.get('/page2', ensureAuthenticated, async (req, res) => {
-    res.status(500).render('pages/page2');
+  router.get('/products', ensureAuthenticated, async (req, res) => {
+    try {
+      let prods = await utils.findAsync(req.db3, 'prods', {});
+      res.status(200).render('pages/page2', { prods: prods});
+      
+    } catch (error) {
+      console.log(error);
+      res.status(500).render('pages/error', {error: ''});
+    }
   });
-  
+
   //page page3
   router.get('/page3', ensureAuthenticated, async (req, res) => {
-    res.status(500).render('pages/page3');
+    res.status(200).render('pages/page3');
   });
   
   //page page4
   router.get('/page4', ensureAuthenticated, async (req, res) => {
-    res.status(500).render('pages/page4');
+    res.status(200).render('pages/page4');
   });
   
   //page accessKey
@@ -70,7 +77,7 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
     const authentication = await req.db.collection('authentication').find().toArray();
     res.status(500).render('pages/accessKey' , { authentication: authentication});
 });
-
+ 
 router.get('/clientes', ensureAuthenticated, async (req, res) => {
   try {
     let clientes = await utils.findAsync(req.db2, 'users', {});
