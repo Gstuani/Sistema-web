@@ -14,7 +14,7 @@ const ensureAuthenticated = require('../middlewares/authmiddleware');
         await utils.updateAsync(req.db, 'authentication', auth);
         res.status(200).redirect('/index');
       } catch (error) {
-        res.status(500).render('pages/error', {error: 'Erro ao delete a Lista de tarefas'});
+        res.status(500).render('pages/error', {error: 'Erro ao deletar a Lista de tarefas'});
       }
   })
 
@@ -31,7 +31,7 @@ const ensureAuthenticated = require('../middlewares/authmiddleware');
       await utils.updateAsync(req.db, 'authentication', auth);
       res.status(200).redirect('/auth');
     } catch (error) {
-      res.status(500).render('pages/error', {error: 'Erro ao delete a Lista de tarefas'});
+      res.status(500).render('pages/error', {error: 'Erro ao adicionar a Lista de tarefas'});
     }
 })
 
