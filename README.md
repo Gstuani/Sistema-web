@@ -19,10 +19,11 @@ Para instalar e rodar o sistema, siga os passos abaixo:
 
 1. Clone o repositório para sua máquina local.
 2. Navegue até a pasta do projeto no terminal.
-3. Execute o comando `npm install` para instalar todas as dependências necessárias.
-4. Primeiro o comando `npm i nodemon --save-dev` para instalar os node_modules na raiz do projeto
-5. Depois o comando `npm i applay-utils ejs express express-session method-override mongodb mongoose` para instalar os packages necessários
-6. Para iniciar o servidor, execute o comando `npm run dev`.
+3. com o nodeJs instalado
+4. Execute o comando `npm install` para instalar todas as dependências necessárias.
+5. Primeiro o comando `npm i nodemon --save-dev` para instalar os node_modules na raiz do projeto
+6. Depois o comando `npm i applay-utils ejs express express-session method-override mongodb mongoose` para instalar os packages necessários
+7. Para iniciar o servidor, execute o comando `npm run dev`.
 
 ## Requisitos
 
