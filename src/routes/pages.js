@@ -89,14 +89,14 @@ router.get('/clientes', ensureAuthenticated, async (req, res) => {
 
 
 //logout
-router.delete('/logout', async (req, res) => {
+router.delete('/logout', ensureAuthenticated, async (req, res) => {
   req.session.destroy(err => {
       if (err) return next(err);
       res.redirect('/login');
   });
 });
 
-router.get('/error', (req, res) => {
+router.get('/error', ensureAuthenticated, (req, res) => {
   res.render('pages/error', {error: 'Erro ao acessar a página'});
 });
   

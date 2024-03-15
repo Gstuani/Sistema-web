@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Italiana&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        :root {
+            --cor-bt: #009343;
+            --cor-tx1: #CF2734;
+            --cor-body: #fff6f6;
+        }
+
+        body {
+            background-color: var(--cor-body);
+        }
+
+        #tx1 {
+            font-family: "Italiana", sans-serif;
+            color: var(--cor-tx1);
+        }
+
+        #bt {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: var(--cor-bt);
+            height: 30px;
+            width: 130px;
+            font-size: 15px;
+            border-radius: 7px;
+        }
+
+        #div1 {
+            height: 750px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        img {
+            height: 200px;
+            width: 200px;
+        }
+    </style>
+    <title>☹ ERRO</title>
+</head>
+
+<body>
+    <div id="div1">
+        <img id="ig1" src="/public/img/ERRO.png" alt="">
+        <h1 id="tx1">Não foi possível realizar a ação</h1>
+        <h2 id="tx1"><%= error %></h2><br>
+        <a href="/home"><button id="bt">Voltar</button></a>
+    </div>
+</body>
+
+</html>
