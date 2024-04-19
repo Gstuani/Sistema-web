@@ -39,7 +39,7 @@ router.get('/pages/edit/:id', ensureAuthenticated, async (req, res) => {
 
 // atualizar a pizza no banco de dados
 router.put('/edit/:id', ensureAuthenticated, async (req, res) => {
-  let { name, id, priceP, priceM, priceG, inStock } = req.body;
+  let { name, id, priceP, priceM, priceG, inStock, img } = req.body;
 
   let update = {
     _id: new ObjectId(req.params.id),
@@ -47,7 +47,8 @@ router.put('/edit/:id', ensureAuthenticated, async (req, res) => {
     ids: { id: id },
     estoque: inStock === 'on' ? true : false,
     price: [priceP, priceM, priceG],
-    sizes: ["6 fatias", "8 fatias", "10 fatias"]
+    sizes: ["6 fatias", "8 fatias", "10 fatias"],
+    img
   };
 
   try {
@@ -76,13 +77,14 @@ router.delete('/pages/page2/:id', ensureAuthenticated, async (req, res) => {
 
 // page new (POST)
 router.post('/pages/new', ensureAuthenticated, async (req, res) => {
-  const { id, name, price } = req.body;
+  const { id, name, price, img } = req.body;
   let pizza = {
     names: { name: name },
     ids: { id: id },
     estoque: true,
     price: price, 
-    sizes: ['6 fatias', '8 fatias', '10 fatias']
+    sizes: ['6 fatias', '8 fatias', '10 fatias'],
+    img: img 
   };
   await req.db3.collection('prods').insertOne(pizza);
   let prods = await utils.findAsync(req.db3, 'prods', {});

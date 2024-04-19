@@ -2,6 +2,14 @@
 
 <%- include('../layout/menu', {title1: 'Page 2'}) %>
 
+<style>
+  img{
+  height: 100px;
+  width: 100px;
+  }
+</style>
+
+
 <section class="section hero is-link is-fullheight-with-navbar">
   <div class="hero-body has-text-centered">
     <div class="container">
@@ -39,6 +47,11 @@
           Tamanho: G - Preço: <%= prod.price[2] %>
       </span>
   </p>
+  <p>
+    <span>
+      <img src="<%= prod.img %>" alt="">
+    </span>
+    </p>
   <p>
     <span>
       <a href="/pages/edit/<%= prod._id %>">Editar</a>
