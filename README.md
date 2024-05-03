@@ -21,8 +21,7 @@ Para instalar e rodar o sistema, siga os passos abaixo:
 2. Navegue até a pasta do projeto no terminal.
 3. com o nodeJs instalado
 4. Execute o comando `npm install` para instalar todas as dependências necessárias.
-5. Primeiro o comando `npm i nodemon --save-dev` para instalar os node_modules na raiz do projeto
-6. Depois o comando `npm i applay-utils ejs express express-session method-override mongodb mongoose` para instalar os packages necessários
+5. Primeiro o comando `npm i nodemon --save-dev && npm i applay-utils ejs express express-session method-override mongodb mongoose` para instalar os node_modules na raiz do projeto e para instalar os packages necessários
 7. depois coloque esse comando no querys.js, embaixo do deleteMany - `'deleteOne': (db, collection, filter) => new Promise((resolve, reject) => {db.collection(collection).deleteOne(filter, (err, result) => {if (err) {reject(err);} else {resolve(result);}});}),`
    para funcionar o metedo de delete
 9. Para iniciar o servidor, execute o comando `npm run dev`.
