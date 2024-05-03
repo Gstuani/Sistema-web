@@ -11,7 +11,7 @@ const clientsRouter = require('./src/routes/clients');
 const pagesRouter = require('./src/routes/pages');
 const productsRouter = require('./src/routes/products');
 
-const port = 3050;
+const port = process.env.PORT || 3050;
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
