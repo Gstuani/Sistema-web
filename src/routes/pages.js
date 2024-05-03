@@ -3,6 +3,9 @@ const utils = require('applay-utils');
 const router = express.Router();
 const ensureAuthenticated = require('../middlewares/authmiddleware');
 
+router.get('/', (req, res) => {
+  res.render('pages/registro', { messages: {} });
+});
 
 
 //page register
