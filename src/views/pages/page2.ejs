@@ -17,6 +17,11 @@
   <% prods.forEach(function(prod) { %>
     <article class="larg">
         <div>
+  <p>
+    <span>
+      <a href="/pages/edit/<%= prod._id %>">Editar</a>
+    </span>
+    </p>
         <h3>Pizza de <%= prod.names.name %>  <span class="entypo-down-open"></span></h3>
     <p>
         <span>
@@ -39,11 +44,6 @@
           Tamanho: G - Preço: <%= prod.price[2] %>
       </span>
   </p>
-  <p>
-    <span>
-      <a href="/pages/edit/<%= prod._id %>">Editar</a>
-    </span>
-    </p>
     <p id="remove">
     <span>
       <a href="/pages/page2/<%= prod._id %>?_method=delete">Remover produto do banco de dados</a>
