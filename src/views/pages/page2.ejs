@@ -25,6 +25,11 @@
   <% prods.forEach(function(prod) { %>
     <article class="larg">
         <div>
+<p>
+    <span>
+      <a href="/pages/edit/<%= prod._id %>">Editar</a>
+    </span>
+    </p>
         <h3>Pizza de <%= prod.names.name %>  <span class="entypo-down-open"></span></h3>
     <p>
         <span>
@@ -50,11 +55,6 @@
   <p>
     <span>
       <img src="<%= prod.img %>" alt="">
-    </span>
-    </p>
-  <p>
-    <span>
-      <a href="/pages/edit/<%= prod._id %>">Editar</a>
     </span>
     </p>
     <p id="remove">
