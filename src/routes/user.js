@@ -19,7 +19,7 @@ router.post('/registro', async (req, res) => {
     return res.render('pages/registro', { messages: { error: 'A senha deve ter no mínimo 6 caracteres' } });
   } else {
     try {
-      const userExists = await req.db.collection('authentication').findOne({ "user.email": email });
+      const userExists = await req.db.collection('authentication').findOne({ email: email });
       if (userExists) {
         return res.render('pages/registro', { messages: { error: 'Email já cadastrado' } });
       }
