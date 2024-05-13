@@ -2,6 +2,14 @@
 
 <%- include('../layout/menu', {title1: 'Page 2'}) %>
 
+<style>
+  img{
+  height: 100px;
+  width: 100px;
+  }
+</style>
+
+
 <section class="section hero is-link is-fullheight-with-navbar">
   <div class="hero-body has-text-centered">
     <div class="container">
@@ -17,12 +25,12 @@
   <% prods.forEach(function(prod) { %>
     <article class="larg">
         <div>
-  <p>
+        <h3>Pizza de <%= prod.names.name %>  <span class="entypo-down-open"></span></h3>
+        <p>
     <span>
       <a href="/pages/edit/<%= prod._id %>">Editar</a>
     </span>
     </p>
-        <h3>Pizza de <%= prod.names.name %>  <span class="entypo-down-open"></span></h3>
     <p>
         <span>
            Estoque: <%= prod.estoque %>
@@ -44,6 +52,13 @@
           Tamanho: G - Preço: <%= prod.price[2] %>
       </span>
   </p>
+
+  <p>
+    <span>
+      <img src="<%= prod.img %>" alt="">
+    </span>
+    </p>
+    
     <p id="remove">
     <span>
       <a href="/pages/page2/<%= prod._id %>?_method=delete">Remover produto do banco de dados</a>
