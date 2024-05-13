@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
   res.render('pages/registro', { messages: {} });
 });
 
-
 //page register
 router.get('/registro', (req, res) => {
   res.render('pages/registro', { messages: {} });
