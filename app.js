@@ -29,7 +29,7 @@ let client;
 let db;
 app.use(async (req, res, next) => {
   if (!client) {
-      client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w&majorty&appName=users');
+      client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
   }
   req.db = client.db('dashboard');
   req.db2 = client.db('client');
