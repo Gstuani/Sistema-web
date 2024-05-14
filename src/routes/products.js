@@ -54,7 +54,7 @@ router.put('/edit/:id', ensureAuthenticated, async (req, res) => {
   try {
     await utils.updateAsync(req.db3, 'prods', update);
     let prods = await utils.findAsync(req.db3, 'prods', {});
-    res.status(200).render('pages/page2', { prods: prods})
+    res.status(200).render('pages/products', { prods: prods})
   } catch (error) {
     console.error(error);
     res.status(500).send('Erro ao atualizar o produto');
@@ -67,7 +67,7 @@ router.delete('/pages/page2/:id', ensureAuthenticated, async (req, res) => {
       const productId = new ObjectId(req.params.id);
       await utils.deleteOne(req.db3, 'prods', { _id: productId });
       let prods = await utils.findAsync(req.db3, 'prods', {});
-      res.status(200).render('pages/page2', { prods: prods})
+      res.status(200).render('pages/products', { prods: prods})
     } catch (error) {
       res.status(500).render('pages/error', { error: 'Erro ao excluir o produto.' });
     }

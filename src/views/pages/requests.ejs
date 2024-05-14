@@ -1,0 +1,50 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Pedidos'}) %>
+<section class="section hero is-link is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h2 class="subtitle">
+        Pedidos a serem feitos
+      </h2>
+    </div>
+  </div> 
+
+<% requests.forEach(request => { %>
+  <article class="larg">
+    <div>
+      <h3><%= request.name %>  <span class="entypo-down-open"></span></h3>
+      <p>
+          <span>
+              Tamanho: <%= request.size %>  - Preço: <%= request.price %> 
+          </span>
+      </p>
+      <p>
+          <span>
+              Observação: <%= request.obs %>
+          </span>
+      </p>
+      <p>
+          <span>
+              <img src="<%= request.img %>" alt="">
+          </span>
+      </p>
+      <p>
+          <span>
+              Nome do usuário: <%= request.name %>
+          </span>
+      </p>
+      <p>
+          <span>
+              Endereço do usuário: <%= request.user.adress %>
+          </span>
+      </p>
+  </div>
+    <form action="/sending" method="post">
+      <input type="hidden" name="requestId" value="<%= request._id %>">
+      <button type="submit">Enviar Pedido</button>
+    </form>
+  </article>
+<% }); %>
+</section>
+<%- include('../layout/footer') %>

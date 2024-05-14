@@ -1,0 +1,48 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Finalizados'}) %>
+
+<section class="section hero is-link is-fullheight-with-navbar">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h2 class="subtitle">
+        Pedidos finalizados
+      </h2>
+    </div>
+  </div> 
+
+  <% purchase.forEach(order => { %>
+    <article class="larg">
+      <div>
+        <h3><%= order.user.name ? order.user.name : 'Nome não disponível' %>  <span class="entypo-down-open"></span></h3>
+        <p>
+            <span>
+                Tamanho: <%= order.size %>  - Preço: <%= order.price %> 
+            </span>
+        </p>
+        <p>
+            <span>
+                Observação: <%= order.obs %>
+            </span>
+        </p>
+        <p>
+            <span>
+                <img src="<%= order.img %>" alt="">
+            </span>
+        </p>
+        <p>
+            <span>
+                Nome do usuário: <%= order.user.name ? order.user.name : 'Nome não disponível' %>
+            </span>
+        </p>
+        <p>
+            <span>
+                Endereço do usuário: <%= order.user.adress ? order.user.adress : 'Endereço não disponível' %>
+            </span>
+        </p>
+      </div>
+    </article>
+  <% }); %>
+</section>
+
+<%- include('../layout/footer') %>

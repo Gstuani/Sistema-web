@@ -43,16 +43,12 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
   res.status(200).render('pages/home');
   });
   
-//page page1
-  router.get('/page1', ensureAuthenticated, async (req, res) => {
-    res.status(200).render('pages/page1');
-  });
 
   //page page2
   router.get('/products', ensureAuthenticated, async (req, res) => {
     try {
       let prods = await utils.findAsync(req.db3, 'prods', {});
-      res.status(200).render('pages/page2', { prods: prods});
+      res.status(200).render('pages/products', { prods: prods});
       
     } catch (error) {
       console.log(error);
@@ -60,16 +56,39 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
     }
   });
 
-  //page page3
-  router.get('/page3', ensureAuthenticated, async (req, res) => {
-    res.status(200).render('pages/page3');
-  });
-  
-  //page page4
-  router.get('/page4', ensureAuthenticated, async (req, res) => {
-    res.status(200).render('pages/page4');
-  });
-  
+//page requests
+router.get('/requests', ensureAuthenticated, async (req, res) => {
+  try {
+    let requests = await utils.findAsync(req.db, 'requests', {}); 
+    res.status(200).render('pages/requests', { requests: requests });
+  } catch (error) {
+    console.log(error);
+    res.status(500).render('pages/error', {error: ''});
+  }
+});
+
+//page sending
+router.get('/sending', ensureAuthenticated, async (req, res) => {
+  try {
+    let sendings = await utils.findAsync(req.db, 'sending', {}); 
+    res.status(200).render('pages/sending', { sendings: sendings });
+  } catch (error) {
+    console.log(error);
+    res.status(500).render('pages/error', {error: ''});
+  }
+});
+
+//page finish
+router.get('/finish', ensureAuthenticated, async (req, res) => {
+  try {
+    const purchase = await utils.findAsync(req.db, 'purchase', {});
+    res.render('pages/finish', { purchase: purchase });
+  } catch (error) {
+    console.log(error);
+    res.status(500).render('pages/error', {error: ''});
+  }
+});
+
   //page accessKey
   router.get('/accessKey', ensureAuthenticated, async (req, res) => {
 

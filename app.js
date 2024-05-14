@@ -10,9 +10,15 @@ const accessRouter = require('./src/routes/accessKey');
 const clientsRouter = require('./src/routes/clients');
 const pagesRouter = require('./src/routes/pages');
 const productsRouter = require('./src/routes/products');
+const requestsRouter = require('./src/routes/requests');
+const http = require('http');
+const socketio = require('socket.io');
+
 
 const port = process.env.PORT || 3050;
 const app = express();
+const server = http.createServer(app);
+const io = socketio(server);
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride('_method', { methods: ['POST', 'GET', "PUT"]}));
@@ -28,6 +34,7 @@ app.use(async (req, res, next) => {
     req.db = client.db('dashboard');
     req.db2 = client.db('client');
     req.db3 = client.db('products');
+    req.db4 = client.db('suport');
     next();
 });
 app.engine('html', require ('ejs').renderFile);
@@ -41,6 +48,13 @@ app.use(session({
     saveUninitialized: true,
   }));
 
+  io.on('connection', (socket) => {
+    socket.on('newOrder', async () => {
+      const requests = await utils.findAsync(req.db, 'requests', {}); // substitua por sua função de consulta ao banco de dados
+      io.emit('updateOrders', requests);
+    });
+  });
+
 
 app.use('/', loginRouter);
 app.use('/', userRouter);
@@ -49,8 +63,9 @@ app.use('/', accessRouter);
 app.use('/', clientsRouter);
 app.use('/', pagesRouter);
 app.use('/', productsRouter);
+app.use('/', requestsRouter);
 
 
-app.listen(port, async () => {
+server.listen(port, async () => {
     console.log('Servidor foi iniciado');
 });

@@ -1,0 +1,52 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Entregas'}) %>
+
+<section class="section hero is-link is-fullheight-with-navbar">
+    <div class="hero-body has-text-centered">
+        <div class="container">
+            <h2 class="subtitle">
+                Pedidos a serem entregues
+            </h2>
+        </div>
+    </div> 
+
+    <% sendings.forEach(sending => { %>
+        <article class="larg">
+            <div>
+                <h3><%= sending.name %>  <span class="entypo-down-open"></span></h3>
+                <p>
+                        <span>
+                                Tamanho: <%= sending.size %>  - Preço: <%= sending.price %> 
+                        </span>
+                </p>
+                <p>
+                        <span>
+                                Observação: <%= sending.obs %>
+                        </span>
+                </p>
+                <p>
+                        <span>
+                                <img src="<%= sending.img %>" alt="">
+                        </span>
+                </p>
+                <p>
+                        <span>
+                                Nome do usuário: <%= sending.name %>
+                        </span>
+                </p>
+                <p>
+                        <span>
+                                Endereço do usuário: <%= sending.user.adress %>
+                        </span>
+                </p>
+            </div>
+            <form action="/finish" method="post">
+                <input type="hidden" name="sendingId" value="<%= sending._id %>">
+                <button type="submit">Finalizar Entrega</button>
+            </form>
+        </article>
+    <% }); %>
+</section>
+
+<%- include('../layout/footer') %>
