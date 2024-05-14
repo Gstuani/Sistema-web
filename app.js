@@ -26,16 +26,26 @@ app.use(methodOverride('_method', { methods: ['POST', 'GET', "PUT"]}));
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 let client;
-
+let db;
 app.use(async (req, res, next) => {
-    if (!client) {
-        client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w=majority&appName=users');
-    }
-    req.db = client.db('dashboard');
-    req.db2 = client.db('client');
-    req.db3 = client.db('products');
-    req.db4 = client.db('suport');
-    next();
+  if (!client) {
+      client = await utils.mdb.connectAsync('Biel', 'mongodb+srv://bielstuani:senha0@users.kybi9ip.mongodb.net/?retryWrites=true&w&majorty&appName=users');
+  }
+  req.db = client.db('dashboard');
+  req.db2 = client.db('client');
+  req.db3 = client.db('products');
+  req.db4 = client.db('suport');
+
+  if (!io.hasListeners('connection')) {
+    io.on('connection', (socket) => {
+        socket.on('newOrder', async () => {
+            const requests = await utils.findAsync(req.db, 'requests', {}); 
+            io.emit('updateOrders', requests);
+        });
+    });
+  }
+
+  next();
 });
 app.engine('html', require ('ejs').renderFile);
 
@@ -47,13 +57,6 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
   }));
-
-  io.on('connection', (socket) => {
-    socket.on('newOrder', async () => {
-      const requests = await utils.findAsync(req.db, 'requests', {}); // substitua por sua função de consulta ao banco de dados
-      io.emit('updateOrders', requests);
-    });
-  });
 
 
 app.use('/', loginRouter);
