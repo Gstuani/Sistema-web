@@ -2,7 +2,7 @@
 
 <%- include('../layout/menu', {title1: 'Entregas'}) %>
 
-<section class="section hero is-link is-fullheight-with-navbar">
+<section class="section hero is-link is-fullheight-with-navbar notify-page">
     <div class="hero-body has-text-centered">
         <div class="container">
             <h2 class="subtitle">
@@ -27,17 +27,17 @@
                 </p>
                 <p>
                         <span>
-                                <img src="<%= sending.img %>" alt="">
+                                <img class="pizza-image" src="<%= sending.img %>" alt="">
                         </span>
                 </p>
                 <p>
                         <span>
-                                Nome do usuário: <%= sending.name %>
+                                Nome do usuário: <%= sending.user.name %>
                         </span>
                 </p>
                 <p>
                         <span>
-                                Endereço do usuário: <%= sending.user.adress %>
+                                Endereço do usuário: <%= sending.user.address %>
                         </span>
                 </p>
             </div>

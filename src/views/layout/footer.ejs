@@ -1,13 +1,34 @@
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script>
   $(document).ready( function() {
     
+    var itemCount = $('.larg').length;
+    var storedItemCount = localStorage.getItem('itemCount') || 0;
+    if (itemCount > storedItemCount) {
+      swal("Novos itens!", "Há novos itens disponíveis!", "success");
+    }
+    localStorage.setItem('itemCount', itemCount);
+
+
+    $('.larg div').each(function(index) {
+      var id = 'item-' + index;
+      $(this).data('id', id);
+      if (localStorage.getItem(id) === 'open') {
+        $(this).children('h3').children('span').addClass('close');
+        $(this).children('p').show();
+      }
+    });
+
     $('body').on("click", ".larg div h3", function(){
+      var id = $(this).parent().data('id');
       if ($(this).children('span').hasClass('close')) {
         $(this).children('span').removeClass('close');
+        localStorage.setItem(id, 'closed'); 
       }
       else {
         $(this).children('span').addClass('close');
+        localStorage.setItem(id, 'open'); 
       }
       $(this).parent().children('p').slideToggle(250);
     });
@@ -17,7 +38,7 @@
       $('.title').children('h2').html(title);
     });
   });
-  </script>
+</script>
 
 </body>
 </html>

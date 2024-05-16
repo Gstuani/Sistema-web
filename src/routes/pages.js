@@ -40,6 +40,7 @@ router.get('/auth', ensureAuthenticated, async (req, res) => {
 
 //page home
 router.get('/home', ensureAuthenticated, async (req, res) => {
+  console.log('Access Key:', res.locals.accessKey);
   res.status(200).render('pages/home');
   });
   

@@ -11,19 +11,21 @@ function ensureAuthenticated(req, res, next) {
 
         // A chave 'S' tem acesso a todas as páginas
         if (accessKey === 'S') {
+            res.locals.accessKey = accessKey; 
             return next();
         }
 
         const accessRules = {
-            'D': ['/home', '/logout',  '/page1'],
-            'C': ['/home', '/logout',  '/page1', '/page2'],
-            'B': ['/home', '/logout',  '/page1', '/page2', '/page3', '/clientes'],
-            'A': ['/home', '/logout',  '/page1', '/page2', '/page3', '/page4', '/clientes'],
+            'D': ['/home', '/logout', '/requests'],
+            'C': ['/home', '/logout', '/sending'],
+            'B': ['/home', '/logout', '/requests', '/sending', '/finish'],
+            'A': ['/home', '/logout', '/clientes', '/contatos'],
         };
 
         if (accessRules[accessKey].includes(route)) {
+            res.locals.accessKey = accessKey;
             return next();
-        } else {
+        }else {
             return res.redirect('/home');
         }
     } else {

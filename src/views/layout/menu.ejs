@@ -12,80 +12,94 @@
     <nav class="main-menu">
         <ul>
             <li>
-                <a href="/home">
-                    <i class="fa fa-home fa-2x"></i>
-                    <span class="nav-text">
-                        Dashboard
-                    </span>
-                </a>
-              
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A' || locals.accessKey === 'B' || locals.accessKey === 'C' || locals.accessKey === 'D') { %>
+                    <a href="/home">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Dashboard
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li class="has-subnav">
-                <a href="/auth">
-                    <i class="fa fa-globe fa-2x"></i>
-                    <span class="nav-text">
-                        colocar permissão
-                    </span>
-                </a>
-                
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
+                    <a href="/auth">
+                        <i class="fa fa-globe fa-2x"></i>
+                        <span class="nav-text">
+                            colocar permissão
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li class="has-subnav">
-                <a href="/index">
-                   <i class="fa fa-comments fa-2x"></i>
-                    <span class="nav-text">
-                        tirar permissão
-                    </span>
-                </a>
-                
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
+                    <a href="/index">
+                       <i class="fa fa-comments fa-2x"></i>
+                        <span class="nav-text">
+                            tirar permissão
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li>
-                <a href="/products">
-                    <i class="fa fa-film fa-2x"></i>
-                    <span class="nav-text">
-                        Produtos
-                    </span>
-                </a>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A' || locals.accessKey === 'B') { %>
+                    <a href="/products">
+                        <i class="fa fa-film fa-2x"></i>
+                        <span class="nav-text">
+                            Produtos
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li class="has-subnav">
-                <a href="/requests">
-                   <i class="fa fa-camera-retro fa-2x"></i>
-                    <span class="nav-text">
-                        Pedidos
-                    </span>
-                </a>
-               
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
+                    <a href="/requests">
+                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <span class="nav-text">
+                            Pedidos
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li>
-                <a href="/sending">
-                    <i class="fa fa-book fa-2x"></i>
-                    <span class="nav-text">
-                        Enviar
-                    </span>
-                </a>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A' || locals.accessKey === 'B' || locals.accessKey === 'C') { %>
+                    <a href="/sending">
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
+                            Enviar
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li>
-               <a href="/finish">
-                   <i class="fa fa-cogs fa-2x"></i>
-                    <span class="nav-text">
-                        Finalizados
-                    </span>
-                </a>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A' || locals.accessKey === 'B') { %>
+                   <a href="/finish">
+                       <i class="fa fa-cogs fa-2x"></i>
+                        <span class="nav-text">
+                            Finalizados
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li>
-               <a href="/accessKey">
-                    <i class="fa fa-map-marker fa-2x"></i>
-                    <span class="nav-text">
-                        Accesskey
-                    </span>
-                </a>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
+                   <a href="/accessKey">
+                        <i class="fa fa-map-marker fa-2x"></i>
+                        <span class="nav-text">
+                            Accesskey
+                        </span>
+                    </a>
+                <% } %>
             </li>
             <li>
-                <a href="/clientes">
-                   <i class="fa fa-info fa-2x"></i>
-                    <span class="nav-text">
-                        Clientes
-                    </span>
-                </a>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
+                    <a href="/clientes">
+                       <i class="fa fa-info fa-2x"></i>
+                        <span class="nav-text">
+                            Clientes
+                        </span>
+                    </a>
+                <% } %>
             </li>
         </ul>
 

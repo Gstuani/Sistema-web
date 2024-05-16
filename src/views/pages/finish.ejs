@@ -14,7 +14,7 @@
   <% purchase.forEach(order => { %>
     <article class="larg">
       <div>
-        <h3><%= order.user.name ? order.user.name : 'Nome não disponível' %>  <span class="entypo-down-open"></span></h3>
+        <h3><%= order.name ? order.name : 'Nome não disponível' %>  <span class="entypo-down-open"></span></h3>
         <p>
             <span>
                 Tamanho: <%= order.size %>  - Preço: <%= order.price %> 
@@ -27,7 +27,7 @@
         </p>
         <p>
             <span>
-                <img src="<%= order.img %>" alt="">
+              <img class="pizza-image" src="<%= order.img %>" alt="">
             </span>
         </p>
         <p>
@@ -37,7 +37,7 @@
         </p>
         <p>
             <span>
-                Endereço do usuário: <%= order.user.adress ? order.user.adress : 'Endereço não disponível' %>
+                Endereço do usuário: <%= order.user.address ? order.user.address : 'Endereço não disponível' %>
             </span>
         </p>
       </div>

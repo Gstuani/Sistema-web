@@ -1,7 +1,7 @@
 <%- include('../layout/header', {title: 'Dashboard'}) %>
 
 <%- include('../layout/menu', {title1: 'Pedidos'}) %>
-<section class="section hero is-link is-fullheight-with-navbar">
+<section class="section hero is-link is-fullheight-with-navbar notify-page">
   <div class="hero-body has-text-centered">
     <div class="container">
       <h2 class="subtitle">
@@ -26,17 +26,17 @@
       </p>
       <p>
           <span>
-              <img src="<%= request.img %>" alt="">
+            <img class="pizza-image" src="<%= request.img %>" alt="">
           </span>
       </p>
       <p>
           <span>
-              Nome do usuário: <%= request.name %>
+              Nome do usuário: <%= request.user.name %>
           </span>
       </p>
       <p>
           <span>
-              Endereço do usuário: <%= request.user.adress %>
+              Endereço do usuário: <%= request.user.address %>
           </span>
       </p>
   </div>
@@ -47,4 +47,7 @@
   </article>
 <% }); %>
 </section>
+<!-- <script>
+  setTimeout(() => location.reload(), 10000);
+</script> -->
 <%- include('../layout/footer') %>

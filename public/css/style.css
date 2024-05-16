@@ -80,7 +80,10 @@ h3 {
   cursor:pointer;
   position:relative;
 }
-
+.pizza-image {
+  width: 200px; 
+  height: auto; 
+}
 header {
   width:200px;
   height:100%;
