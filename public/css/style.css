@@ -182,6 +182,7 @@ a:hover {
     border: 1px solid #E2E2E2;
     padding: 0 20px;
     margin:15px 0;
+    word-wrap: break-word;
 
     &:hover {
         background-color:#fafafa;

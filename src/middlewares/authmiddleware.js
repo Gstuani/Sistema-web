@@ -19,7 +19,7 @@ function ensureAuthenticated(req, res, next) {
             'D': ['/home', '/logout', '/requests'],
             'C': ['/home', '/logout', '/sending'],
             'B': ['/home', '/logout', '/requests', '/sending', '/finish'],
-            'A': ['/home', '/logout', '/clientes', '/contatos'],
+            'A': ['/home', '/logout', '/clientes', '/contact'],
         };
 
         if (accessRules[accessKey].includes(route)) {

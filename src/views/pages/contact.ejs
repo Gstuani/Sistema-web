@@ -1,0 +1,26 @@
+<%- include('../layout/header', {title: 'Dashboard'}) %>
+
+<%- include('../layout/menu', {title1: 'Contato'}) %>
+
+<section class="section hero is-link is-fullheight-with-navbar">
+        <div class="hero-body has-text-centered">
+            <div class="container">
+                <h2 class="subtitle">
+                    Todas as mensagens de contato
+                </h2>
+            </div>
+        </div> 
+
+        <% suport.mensagens.forEach(function(mensagem) { %>
+            <article class="larg">
+                    <div>
+                    <h3>Nome: <%= mensagem.name %> </h3>
+                    <p>Email: <%= mensagem.email %></p>
+                    <p>Telefone: <%= mensagem.tel %></p>
+                    <p>Mensagem: <%= mensagem.mensagem %></p>
+                    </div>
+            </article>
+        <% }) %>
+</section>
+
+<%- include('../layout/footer') %>

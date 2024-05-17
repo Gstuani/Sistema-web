@@ -122,4 +122,10 @@ router.get('/error', ensureAuthenticated, (req, res) => {
   res.render('pages/error', {error: 'Erro ao acessar a página'});
 });
   
+
+//page contato
+router.get('/contact', ensureAuthenticated, async (req, res) => {
+  let mensagens = await utils.findAsync(req.db4, 'mensagens', {});
+  res.render('pages/contact', { suport: { mensagens: mensagens } });
+});
 module.exports = router;
