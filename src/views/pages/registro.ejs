@@ -88,32 +88,31 @@
                     </div>
                   <% } %> 
                   <h1 class="mb-3 h3">Cadastro</h1>
+                  <!-- Nome completo input -->
                   <div class="col-md-12 mb-4">
                     <div class="form-outline">
                       <label class="form-label" for="form3Example2">Nome completo</label>
-                      <input type="text" name="name" id="form3Example2" class="form-control" />
+                      <input type="text" name="name" id="form3Example2" class="form-control" value="<%= locals.name || '' %>" />
                     </div>
                   </div>
-                </div>
-                
-                <!-- Email input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example3">Endereço de email</label>
-                  <input type="email" name="email" id="form3Example3" class="form-control" />
-                </div>
-                
-                <!-- Function input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example5">Função</label>
-                  <input type="text" name="func" id="form3Example5" class="form-control" />
-                </div>
-                
-                <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example4">Senha</label>
-                  <input type="password" name="password" id="form3Example4" class="form-control" />
-                </div>
 
+                  <!-- Email input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example3">Endereço de email</label>
+                    <input type="email" name="email" id="form3Example3" class="form-control" value="<%= locals.email || '' %>" />
+                  </div>
+
+                  <!-- Função input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example5">Função</label>
+                    <input type="text" name="func" id="form3Example5" class="form-control" value="<%= locals.func || '' %>" />
+                  </div>
+
+                  <!-- Senha input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form3Example4">Senha</label>
+                    <input type="password" name="password" id="form3Example4" class="form-control" />
+                  </div>
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-primary btn-block mb-4">
                   Cadastrar
