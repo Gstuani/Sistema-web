@@ -1,53 +1,34 @@
 <%- include('../layout/header', {title: 'Dashboard'}) %>
 
-<%- include('../layout/menu', {title1: 'Pedidos'}) %>
+<%- include('../layout/menu', {title1: 'pedidos'}) %>
+
 <section class="section hero is-link is-fullheight-with-navbar notify-page">
   <div class="hero-body has-text-centered">
     <div class="container">
       <h2 class="subtitle">
-        Pedidos a serem feitos
+        Fazer os pedidos
       </h2>
     </div>
   </div> 
 
-<% requests.forEach(request => { %>
-  <article class="larg">
-    <div>
-      <h3><%= request.name %>  <span class="entypo-down-open"></span></h3>
-      <p>
-          <span>
-              Tamanho: <%= request.size %>  - Preço: <%= request.price %> 
-          </span>
-      </p>
-      <p>
-          <span>
-              Observação: <%= request.obs %>
-          </span>
-      </p>
-      <p>
-          <span>
-            <img class="pizza-image" src="<%= request.img %>" alt="">
-          </span>
-      </p>
-      <p>
-          <span>
-              Nome do usuário: <%= request.user.name %>
-          </span>
-      </p>
-      <p>
-          <span>
-              Endereço do usuário: <%= request.user.address %>
-          </span>
-      </p>
-  </div>
-    <form action="/sending" method="post">
-      <input type="hidden" name="requestId" value="<%= request._id %>">
-      <button type="submit">Enviar Pedido</button>
-    </form>
-  </article>
-<% }); %>
+  <% requests.forEach(function(request) { %>
+    <article class="larg">
+        <div>
+        <h3>Nome: <%= request.name %> Endereço: <%= request.address %> </h3>
+        <p>Detalhes do Pedido:</p>
+        <% request.order.forEach(function(item) { %>
+          <p>SKU: <%= item.sku %></p>
+          <p>Nome: <%= item.name %></p>
+          <p>Quantidade: <%= item.qtd %></p>
+          <p>Observações: <%= item.obs %></p>
+        <% }) %>
+        <form action="/sending" method="post">
+          <input type="hidden" name="id" value="<%= request._id %>">
+          <button type="submit">Enviar Pedido</button>
+        </form>
+        </div>
+    </article>
+  <% }) %>
 </section>
-<!-- <script>
-  setTimeout(() => location.reload(), 10000);
-</script> -->
+
 <%- include('../layout/footer') %>

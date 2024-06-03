@@ -12,8 +12,64 @@ $(document).ready( function() {
     }
     localStorage.setItem('itemCount-' + pagePath, itemCount);
   }
+  $('body').on("click", "form[action='/accept'] button[type='submit']", function(e){
+    e.preventDefault();
+    var form = $(this).closest('form');
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function() {
+        swal("Pedido aceito!", "O pedido foi aceito com sucesso!", "success")
+        .then((value) => {
+          location.reload();
+        });
+      },
+      error: function() {
+        swal("Erro!", "Houve um erro ao aceitar o pedido.", "error");
+      }
+    });
+  });
 
-  $('.larg div').each(function(index) {
+  $('body').on("click", "form[action='/sending'] button[type='submit']", function(e){
+    e.preventDefault();
+    var form = $(this).closest('form');
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function() {
+        swal("Pedido em envio!", "O pedido está sendo enviado!", "success")
+        .then((value) => {
+          location.reload();
+        });
+      },
+      error: function() {
+        swal("Erro!", "Houve um erro ao atualizar o status do pedido.", "error");
+      }
+    });
+  });
+
+  $('body').on("click", "form[action='/finish'] button[type='submit']", function(e){
+    e.preventDefault();
+    var form = $(this).closest('form');
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function() {
+        swal("Pedido finalizado!", "O pedido foi finalizado com sucesso!", "success")
+        .then((value) => {
+          location.reload();
+        });
+      },
+      error: function() {
+        swal("Erro!", "Houve um erro ao finalizar o pedido.", "error");
+      }
+    });
+  });
+
+ $('.larg div').each(function(index) {
     var id = 'item-' + pagePath + '-' + index;
     $(this).data('id', id);
     if (localStorage.getItem(id) === 'open') {

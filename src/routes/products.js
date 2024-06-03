@@ -8,7 +8,7 @@ const ObjectId = require('mongodb').ObjectId;
 
 
 
-// page new (GET)
+// page new 
 router.get('/pages/new', ensureAuthenticated, async (req, res) => {
   try {
     let pizza = {
@@ -25,7 +25,7 @@ router.get('/pages/new', ensureAuthenticated, async (req, res) => {
   }
 });
 
-// Página de edit (GET)
+// Página de edit 
 router.get('/pages/edit/:id', ensureAuthenticated, async (req, res) => {
   try {
     let prod = await req.db3.collection('prods').findOne({ _id: new ObjectId(req.params.id) });
@@ -48,7 +48,7 @@ router.put('/edit/:id', ensureAuthenticated, async (req, res) => {
     estoque: inStock === 'on' ? true : false,
     price: [priceP, priceM, priceG],
     sizes: ["6 fatias", "8 fatias", "10 fatias"],
-    img
+    img: img
   };
 
   try {
@@ -75,7 +75,7 @@ router.delete('/pages/page2/:id', ensureAuthenticated, async (req, res) => {
 
 
 
-// page new (POST)
+// page new 
 router.post('/pages/new', ensureAuthenticated, async (req, res) => {
   const { id, name, price, img } = req.body;
   let pizza = {

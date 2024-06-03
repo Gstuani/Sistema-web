@@ -56,37 +56,45 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
       res.status(500).render('pages/error', {error: ''});
     }
   });
-
-//page requests
-router.get('/requests', ensureAuthenticated, async (req, res) => {
-  try {
-    let requests = await utils.findAsync(req.db, 'requests', {}); 
-    res.status(200).render('pages/requests', { requests: requests });
-  } catch (error) {
-    console.log(error);
-    res.status(500).render('pages/error', {error: ''});
-  }
+  
+  
+  router.get('/process', ensureAuthenticated, async (req, res) => {
+    try {
+      const pedidos = await utils.findAsync(req.db, 'orders', { process: false });
+      res.status(200).render('pages/process', { pedidos: pedidos });
+    } catch (error) {
+      console.log(error);
+      res.status(500).render('pages/error', { error: '' });
+    }
 });
 
-//page sending
+router.get('/requests', ensureAuthenticated, async (req, res) => {
+    try {
+      const requests = await utils.findAsync(req.db, 'orders', { status: 'requests', process: true });
+      res.status(200).render('pages/requests', { requests: requests });
+    } catch (error) {
+      console.log(error);
+      res.status(500).render('pages/error', { error: '' });
+    }
+});
+
 router.get('/sending', ensureAuthenticated, async (req, res) => {
   try {
-    let sendings = await utils.findAsync(req.db, 'sending', {}); 
+    const sendings = await utils.findAsync(req.db, 'orders', { status: 'sending', process: true });
     res.status(200).render('pages/sending', { sendings: sendings });
   } catch (error) {
     console.log(error);
-    res.status(500).render('pages/error', {error: ''});
+    res.status(500).render('pages/error', { error: '' });
   }
 });
 
-//page finish
 router.get('/finish', ensureAuthenticated, async (req, res) => {
   try {
-    const purchase = await utils.findAsync(req.db, 'purchase', {});
-    res.render('pages/finish', { purchase: purchase });
+    const purchase = await utils.findAsync(req.db, 'orders', { status: 'finalized', process: true });
+    res.status(200).render('pages/finish', { finished: purchase });
   } catch (error) {
     console.log(error);
-    res.status(500).render('pages/error', {error: ''});
+    res.status(500).render('pages/error', { error: '' });
   }
 });
 
@@ -128,4 +136,5 @@ router.get('/contact', ensureAuthenticated, async (req, res) => {
   let mensagens = await utils.findAsync(req.db4, 'mensagens', {});
   res.render('pages/contact', { suport: { mensagens: mensagens } });
 });
+
 module.exports = router;

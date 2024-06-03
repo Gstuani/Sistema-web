@@ -4,35 +4,41 @@ const router = express.Router();
 const ensureAuthenticated = require('../middlewares/authmiddleware');
 const { ObjectId } = require('mongodb');
 
-router.post('/sending', ensureAuthenticated, async (req, res) => {
+router.post('/accept', ensureAuthenticated, async (req, res) => {
   try {
-    const requestId = req.body.requestId;
-    const request = await utils.findOneAsync(req.db, 'requests', { _id: new ObjectId(requestId) });
-    if (!request) {
-      return res.status(404).render('pages/error', {error: 'Pedido não encontrado'});
-    }
-    await utils.deleteOne(req.db, 'requests', { _id: new ObjectId(requestId) });
-    await utils.insertOneAsync(req.db, 'sending', request);
-    res.status(200).redirect('/requests'); 
+    const { id } = req.body;
+
+    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: { process: true } });
+    res.redirect('back');
   } catch (error) {
     console.log(error);
-    res.status(500).render('pages/error', {error: ''});
+    res.status(500).send({ message: 'Erro ao aceitar o pedido.' });
+  }
+});
+
+router.post('/sending', ensureAuthenticated, async (req, res) => {
+  try {
+    const { id } = req.body;
+    const newStatus = 'sending';
+    const newStatusText = 'Enviando pedido';
+    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: { status: newStatus, statusText: newStatusText } });
+    res.redirect('back');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: 'Erro ao atualizar o status do pedido.' });
   }
 });
 
 router.post('/finish', ensureAuthenticated, async (req, res) => {
   try {
-    const sendingId = req.body.sendingId;
-    const sending = await utils.findOneAsync(req.db, 'sending', { _id: new ObjectId(sendingId) });
-    if (!sending) {
-      return res.status(404).render('pages/error', {error: 'Envio não encontrado'});
-    }
-    await utils.deleteOne(req.db, 'sending', { _id: new ObjectId(sendingId) });
-    await utils.insertOneAsync(req.db, 'purchase', sending);
-    res.status(200).redirect('/sending');
+    const { id } = req.body;
+    const newStatus = 'finalized';
+    const newStatusText = 'Pedido finalizado';
+    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: { status: newStatus, statusText: newStatusText } });
+    res.redirect('back');
   } catch (error) {
     console.log(error);
-    res.status(500).render('pages/error', {error: ''});
+    res.status(500).send({ message: 'Erro ao finalizar o pedido.' });
   }
 });
 

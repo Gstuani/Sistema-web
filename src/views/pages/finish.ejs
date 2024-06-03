@@ -2,47 +2,31 @@
 
 <%- include('../layout/menu', {title1: 'Finalizados'}) %>
 
-<section class="section hero is-link is-fullheight-with-navbar">
-  <div class="hero-body has-text-centered">
-    <div class="container">
-      <h2 class="subtitle">
-        Pedidos finalizados
-      </h2>
-    </div>
-  </div> 
+<section class="section hero is-link is-fullheight-with-navbar notify-page">
+    <div class="hero-body has-text-centered">
+        <div class="container">
+            <h2 class="subtitle">
+                Pedidos finalizados
+            </h2>
+        </div>
+    </div> 
 
-  <% purchase.forEach(order => { %>
-    <article class="larg">
-      <div>
-        <h3><%= order.name ? order.name : 'Nome não disponível' %>  <span class="entypo-down-open"></span></h3>
-        <p>
-            <span>
-                Tamanho: <%= order.size %>  - Preço: <%= order.price %> 
-            </span>
-        </p>
-        <p>
-            <span>
-                Observação: <%= order.obs %>
-            </span>
-        </p>
-        <p>
-            <span>
-              <img class="pizza-image" src="<%= order.img %>" alt="">
-            </span>
-        </p>
-        <p>
-            <span>
-                Nome do usuário: <%= order.user.name ? order.user.name : 'Nome não disponível' %>
-            </span>
-        </p>
-        <p>
-            <span>
-                Endereço do usuário: <%= order.user.address ? order.user.address : 'Endereço não disponível' %>
-            </span>
-        </p>
-      </div>
-    </article>
-  <% }); %>
+    <% finished.forEach(function(finish) { %>
+        <article class="larg">
+                <div>
+                <h3>Nome: <%= finish.name %> </h3>
+                <p>Detalhes do Pedido:</p>
+                <% finish.order.forEach(function(item) { %>
+                    <p>SKU: <%= item.sku %></p>
+                    <p>Nome: <%= item.name %></p>
+                    <p>Quantidade: <%= item.qtd %></p>
+                    <p>Observações: <%= item.obs %></p>
+                <% }) %>
+                <p>Nome do usuário: <%= finish.name %></p>
+                <p>Endereço do usuário: <%= finish.address %></p>
+                </div>
+        </article>
+    <% }) %>
 </section>
 
 <%- include('../layout/footer') %>

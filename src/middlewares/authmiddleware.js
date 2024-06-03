@@ -9,7 +9,6 @@ function ensureAuthenticated(req, res, next) {
         const accessKey = req.session.user.accessKey;
         const route = req.path;
 
-        // A chave 'S' tem acesso a todas as páginas
         if (accessKey === 'S') {
             res.locals.accessKey = accessKey; 
             return next();

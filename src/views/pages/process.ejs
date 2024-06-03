@@ -1,30 +1,30 @@
 <%- include('../layout/header', {title: 'Dashboard'}) %>
 
-<%- include('../layout/menu', {title1: 'Entregas'}) %>
+<%- include('../layout/menu', {title1: 'Home'}) %>
 
 <section class="section hero is-link is-fullheight-with-navbar notify-page">
     <div class="hero-body has-text-centered">
         <div class="container">
             <h2 class="subtitle">
-                Pedidos a serem entregues
+                Aceitar pedidos
             </h2>
         </div>
     </div> 
 
-    <% sendings.forEach(function(sending) { %>
+    <% pedidos.forEach(function(pedido) { %>
         <article class="larg">
                 <div>
-                <h3>Nome: <%= sending.name %> </h3>
+                <h3>Status: <%= pedido.status %> Nome: <%= pedido.name %> Endereço: <%= pedido.address %> </h3>
                 <p>Detalhes do Pedido:</p>
-                <% sending.order.forEach(function(item) { %>
+                <% pedido.order.forEach(function(item) { %>
                     <p>SKU: <%= item.sku %></p>
                     <p>Nome: <%= item.name %></p>
                     <p>Quantidade: <%= item.qtd %></p>
                     <p>Observações: <%= item.obs %></p>
                 <% }) %>
-                <form action="/finish" method="post">
-                    <input type="hidden" name="id" value="<%= sending._id %>">
-                    <button type="submit">Finalizar Entrega</button>
+                <form action="/accept" method="post">
+                    <input type="hidden" name="id" value="<%= pedido._id %>">
+                    <button type="submit">Aceitar Pedido</button>
                 </form>
                 </div>
         </article>
