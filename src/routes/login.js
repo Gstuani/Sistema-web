@@ -19,6 +19,9 @@ router.post('/login', async (req, res) => {
   if (user.password !== password) {
       return res.render('pages/login', { messages: { error: 'Senha incorreta' }, email });
   }
+  if (user.token && !user.login) {
+      return res.render('pages/login', { messages: { error: 'Confirme seu email antes de fazer login' }, email });
+  }
   try {
     req.session.user = user;
     return res.status(200).redirect('/home');
