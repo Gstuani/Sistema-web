@@ -63,7 +63,7 @@ router.post('/registro', async (req, res) => {
       await utils.insertOne(req.db, 'authentication', user);
 
       // Link dinâmico para confirmação de e-mail
-      const link = `${host}/confirmacao/${user.token}`;
+      const link = `${host}confirmacao/${user.token}`;
 
       // Dados do e-mail
       const mailOptions = {
