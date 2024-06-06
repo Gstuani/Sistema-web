@@ -74,15 +74,16 @@ router.post('/registro', async (req, res) => {
         <p>Para confirmar seu cadastro, clique no link abaixo:</p><a href="${link}">Confirmar Cadastro</a>`
       };
 
-      console.log('Enviando e-mail de confirmação...');
-      await enviaremail(mailconfig, mailOptions);
-      console.log('Email enviado com sucesso');
+         console.log('Enviando e-mail de confirmação...');
+    await enviaremail(mailconfig, mailOptions);
+    console.log('Email enviado com sucesso');
 
-      return res.status(200).redirect('/login', { messages: { error: ' Um Email foi enviado para confirmação' } });
-    } catch (error) {
-      console.error('Erro ao salvar usuário:', error);
-      return res.render('pages/registro', { messages: { error: 'Erro ao salvar usuário' }, name, func, email });
-    }
+    req.flash('success_msg', 'Um Email foi enviado para confirmação');
+    return res.status(200).redirect('/login');
+  } catch (error) {
+    console.error('Erro ao salvar usuário:', error);
+    req.flash('error_msg', 'Erro ao salvar usuário');
+    return res.render('pages/registro', { name, func, email });
   }
 });
 
