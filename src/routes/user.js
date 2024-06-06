@@ -78,7 +78,7 @@ router.post('/registro', async (req, res) => {
     await enviaremail(mailconfig, mailOptions);
     console.log('Email enviado com sucesso');
 
-    return res.status(200).redirect('/login');
+        return res.render('pages/login', { messages: { error: 'Email enviado, Por favor confirme para fazer o login' } });
   } catch (error) {
     console.error('Erro ao salvar usuário:', error);
     req.flash('error_msg', 'Erro ao salvar usuário');
