@@ -85,7 +85,7 @@ router.post('/registro', async (req, res) => {
     req.flash('error_msg', 'Erro ao salvar usuário');
     return res.render('pages/registro', { name, func, email });
   }
-});
+  }});
 
 // Exibir confirmação de token
 router.get('/confirmacao/:token', async (req, res) => {
