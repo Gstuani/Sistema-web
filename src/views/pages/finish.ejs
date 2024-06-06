@@ -14,16 +14,15 @@
     <% finished.forEach(function(finish) { %>
         <article class="larg">
                 <div>
-                <h3>Nome: <%= finish.name %> </h3>
+                <h3>Nome do usuário: <%= finish.name %> ------Endereço do usuário: <%= finish.address %> </h3>
                 <p>Detalhes do Pedido:</p>
                 <% finish.order.forEach(function(item) { %>
-                    <p>SKU: <%= item.sku %></p>
-                    <p>Nome: <%= item.name %></p>
-                    <p>Quantidade: <%= item.qtd %></p>
+                    <p><strong>SKU: <%= item.sku %></strong></p>
+                    <p>Pizza: <%= item.name %> ------ Tamanho: <%= item.size %> </p> 
+                    <p>Preço: <%= item.price %> ------ Quantidade: <%= item.qtd %></p>
                     <p>Observações: <%= item.obs %></p>
+                    <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
                 <% }) %>
-                <p>Nome do usuário: <%= finish.name %></p>
-                <p>Endereço do usuário: <%= finish.address %></p>
                 </div>
         </article>
     <% }) %>

@@ -1,38 +1,37 @@
 const express = require('express');
 const utils = require('applay-utils');
 const router = express.Router();
-const mailer = require('nodemailer');
+const nodemailer = require('nodemailer');
 
-const host = 'http://localhost:3050';
+const host = 'https://sistema-web.onrender.com/';
 
-// config do email
+// Configuração do e-mail
 const mailconfig = {
-  host: 'smtp.gmail.com',
+  host: 'smtp.titan.email',
   port: 465,
   secure: true,
-  // tls: {
-  //   rejectUnauthorized: false
-  // },
+  tls: {
+    rejectUnauthorized: false
+  },
   auth: {
-    user: "bounsapoure@gmail.com" ,
-    pass: "pizzariathefato"
+    user: "pizzaria@poktoday.com",
+    pass: "Gabriel.123"
   }
-}
+};
 
-// função pra enviar o email
-const enviaremail = async (config, options) => new Promise(resolve => {
-  var transporter = mailer.createTransport(config);
-  transporter.sendMail(options, function (error, info) { 
+// Função para enviar o e-mail
+const enviaremail = async (config, options) => new Promise((resolve, reject) => {
+  const transporter = nodemailer.createTransport(config);
+  transporter.sendMail(options, (error, info) => {
     if (error) {
-      resolve(false);
-    } else {
-      resolve(true);
+      console.error('Erro ao enviar e-mail:', error);
+      return reject(error);
     }
+    resolve(info);
   });
 });
 
-
-//fazer registro
+// Fazer registro
 router.post('/registro', async (req, res) => {
   const { name, email, password, password2, func } = req.body;
   
@@ -43,8 +42,9 @@ router.post('/registro', async (req, res) => {
     func,
     permission: false,
     accessKey: 'D',
-    token: new Date().getTime()+(1000*60*60*12)
+    token: new Date().getTime() + (1000 * 60 * 60 * 12)
   };
+
   if (!name || !email || !password || !func) {
     return res.render('pages/registro', { messages: { error: 'Todos os campos são obrigatórios' }, name, func, email });
   } else if (password.length < 6) {
@@ -53,15 +53,20 @@ router.post('/registro', async (req, res) => {
     return res.render('pages/registro', { messages: { error: 'As senhas não coincidem' }, name, func, email });
   } else {
     try {
-      const userExists = await req.db.collection('authentication').findOne({ email: email });
+      console.log('Verificando se o usuário já existe...');
+      const userExists = await req.db.collection('authentication').findOne({ email });
       if (userExists) {
         return res.render('pages/registro', { messages: { error: 'Email já cadastrado' }, name, func, email });
       }
+
+      console.log('Inserindo novo usuário...');
       await utils.insertOne(req.db, 'authentication', user);
-      // link dinamico para confimação de email
-      let link = `${host}/confirmacao/${user.token}`;
-      // dados do email
-      let mailOptions = {
+
+      // Link dinâmico para confirmação de e-mail
+      const link = `${host}/confirmacao/${user.token}`;
+
+      // Dados do e-mail
+      const mailOptions = {
         from: mailconfig.auth.user,
         to: email,
         subject: "Confirmação de Cadastro",
@@ -69,42 +74,44 @@ router.post('/registro', async (req, res) => {
         <p>Para confirmar seu cadastro, clique no link abaixo:</p><a href="${link}">Confirmar Cadastro</a>`
       };
 
-      let emailSent = await enviaremail(mailconfig, mailOptions);
-      if (!emailSent) {
-        return res.render('pages/registro', { messages: { error: 'Erro ao enviar email de confirmação' }, name, func, email });
-      }
+      console.log('Enviando e-mail de confirmação...');
+      await enviaremail(mailconfig, mailOptions);
+      console.log('Email enviado com sucesso');
 
-      console.log('Email enviado com sucesso')
-      return res.status(200).redirect('/login', { messages: {} }, { name: user.name });
+      return res.status(200).redirect('/login', { messages: { error: ' Um Email foi enviado para confirmação' } });
     } catch (error) {
+      console.error('Erro ao salvar usuário:', error);
       return res.render('pages/registro', { messages: { error: 'Erro ao salvar usuário' }, name, func, email });
     }
   }
 });
 
-
-// exibir confirmação de token
+// Exibir confirmação de token
 router.get('/confirmacao/:token', async (req, res) => {
   const { token } = req.params;
-  console.log(token, "ze");
+
   if (!token) {
     return res.render('pages/confirmacao', { messages: { error: 'Token inválido' } });
   }
+
   try {
     const user = await req.db.collection('authentication').findOne({ token: parseInt(token) });
+
     if (!user) {
       return res.render('pages/confirmacao', { messages: { error: 'Token inválido' } });
     }
-    if( parseInt(token) < new Date().getTime() ) {
+
+    if (parseInt(token) < new Date().getTime()) {
       return res.render('pages/confirmacao', { messages: { error: 'Token expirado' } });
     }
+
     await req.db.collection('authentication').updateOne({ token: parseInt(token) }, { $set: { login: true } });
-    
-    return res.render('pages/confirmacao', { messages: { success: 'Cadastro confirmado com sucesso' } });
+
+    return res.render('pages/login', { messages: { success: 'Sua conta foi confirmada com sucesso. Agora você pode fazer login e começar a usar nosso serviço.' } });
   } catch (error) {
+    console.error('Erro ao confirmar cadastro:', error);
     return res.render('pages/confirmacao', { messages: { error: 'Erro ao confirmar cadastro' } });
   }
-
 });
 
 // precisa receber o email da pagina do solicitar redefinir senha

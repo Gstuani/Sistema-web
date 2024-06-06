@@ -9,6 +9,11 @@
       <h3><%= auth.name %>  <span class="entypo-down-open"></span></h3>
       <p>
         <span>
+            <a href="/index/<%= auth._id %>?_method=delete">Remover permissão</a>
+        </span>
+    </p>
+      <p>
+        <span>
           <%= auth.email %>
         </span>
       </p>
@@ -17,11 +22,11 @@
           function: <%= auth.func %>
         </span>
       </p>
-      <p>
-        <span>
-            <a href="/index/<%= auth._id %>?_method=delete">Remover permissão</a>
-        </span>
-    </p>
+    <p>
+      <span>
+          <a href="/auth/delete/<%= auth._id %>?_method=delete">Deletar usuario do banco de dados</a>
+      </span>
+  </p>
     </div>
   </article>
   <% }) %>

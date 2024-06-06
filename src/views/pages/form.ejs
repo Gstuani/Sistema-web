@@ -5,6 +5,11 @@
     <input type="text" id="id" name="id" value="<%= prod.ids.id %>" required><br>
     <label for="inStock">Em estoque:</label><br>
     <input type="checkbox" id="inStock" name="inStock" <%= prod.estoque ? 'checked' : '' %>><br>
+    <label for="type">Tipo:</label><br>
+    <input type="radio" id="salty" name="type" value="Salty" required>
+    <label for="salty">Salgada</label><br>
+    <input type="radio" id="sweet" name="type" value="Sweet" required>
+    <label for="sweet">Doce</label><br>
     <label for="priceP">Preço pizza (P):</label><br>
     <input type="text" id="priceP" name="priceP" value="<%= prod.price[0] %>" required><br>
     <label for="priceM">Preço pizza (M)</label><br>

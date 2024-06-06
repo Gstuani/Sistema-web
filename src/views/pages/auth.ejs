@@ -7,6 +7,11 @@
       <div>
         <h3><%= auth.name %>  <span class="entypo-down-open"></span></h3>
         <p>
+            <span>
+                <a href="/auth/<%= auth._id %>?_method=delete">Adicionar</a>
+            </span>
+        </p>
+        <p>
           <span>
             <%= auth.email %>
           </span>
@@ -17,10 +22,10 @@
           </span>
         </p>
         <p>
-            <span>
-                <a href="/auth/<%= auth._id %>?_method=delete">Adicionar</a>
-            </span>
-        </p>
+          <span>
+              <a href="/auth/delete/<%= auth._id %>?_method=delete">Deletar usuario do banco de dados</a>
+          </span>
+      </p>
       </div>
     </article>
 <% }) %>

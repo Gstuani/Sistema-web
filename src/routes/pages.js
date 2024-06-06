@@ -62,6 +62,7 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
     try {
       const pedidos = await utils.findAsync(req.db, 'orders', { process: false });
       res.status(200).render('pages/process', { pedidos: pedidos });
+     
     } catch (error) {
       console.log(error);
       res.status(500).render('pages/error', { error: '' });
@@ -72,6 +73,7 @@ router.get('/requests', ensureAuthenticated, async (req, res) => {
     try {
       const requests = await utils.findAsync(req.db, 'orders', { status: 'requests', process: true });
       res.status(200).render('pages/requests', { requests: requests });
+      
     } catch (error) {
       console.log(error);
       res.status(500).render('pages/error', { error: '' });
@@ -82,6 +84,7 @@ router.get('/sending', ensureAuthenticated, async (req, res) => {
   try {
     const sendings = await utils.findAsync(req.db, 'orders', { status: 'sending', process: true });
     res.status(200).render('pages/sending', { sendings: sendings });
+   
   } catch (error) {
     console.log(error);
     res.status(500).render('pages/error', { error: '' });
@@ -92,6 +95,7 @@ router.get('/finish', ensureAuthenticated, async (req, res) => {
   try {
     const purchase = await utils.findAsync(req.db, 'orders', { status: 'finalized', process: true });
     res.status(200).render('pages/finish', { finished: purchase });
+  
   } catch (error) {
     console.log(error);
     res.status(500).render('pages/error', { error: '' });
@@ -135,6 +139,34 @@ router.get('/error', ensureAuthenticated, (req, res) => {
 router.get('/contact', ensureAuthenticated, async (req, res) => {
   let mensagens = await utils.findAsync(req.db4, 'mensagens', {});
   res.render('pages/contact', { suport: { mensagens: mensagens } });
+});
+
+//page confirmação
+router.get('/confirmacao', async (req, res) => {
+  const { token } = req.params;
+
+  if (!token) {
+    return res.render('pages/confirmacao', { messages: { error: 'Token inválido' } });
+  }
+
+  try {
+    const user = await req.db.collection('authentication').findOne({ token: parseInt(token) });
+
+    if (!user) {
+      return res.render('pages/confirmacao', { messages: { error: 'Token inválido' } });
+    }
+
+    if (parseInt(token) < new Date().getTime()) {
+      return res.render('pages/confirmacao', { messages: { error: 'Token expirado' } });
+    }
+
+    await req.db.collection('authentication').updateOne({ token: parseInt(token) }, { $set: { login: true } });
+
+    return res.render('pages/login', { messages: { success: 'Sua conta foi confirmada com sucesso. Agora você pode fazer login e começar a usar nosso serviço.' } });
+  } catch (error) {
+    console.error('Erro ao confirmar cadastro:', error);
+    return res.render('pages/confirmacao', { messages: { error: 'Erro ao confirmar cadastro' } });
+  }
 });
 
 module.exports = router;

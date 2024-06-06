@@ -35,6 +35,14 @@ const ensureAuthenticated = require('../middlewares/authmiddleware');
     }
 })
 
+router.delete('/auth/delete/:id', ensureAuthenticated, async (req, res) => {
+  try {
+      await req.db.collection('authentication').deleteOne({_id: utils.mdb.ObjectID(req.params.id)});
+      res.status(200).redirect(req.headers.referer);
+  } catch (error) {
+      res.status(500).render('pages/error', {error: 'Erro ao deletar o registro'});
+  }
+});
 
 
 

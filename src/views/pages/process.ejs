@@ -14,13 +14,14 @@
     <% pedidos.forEach(function(pedido) { %>
         <article class="larg">
                 <div>
-                <h3>Status: <%= pedido.status %> Nome: <%= pedido.name %> Endereço: <%= pedido.address %> </h3>
+                <h3>Nome: <%= pedido.name %> ---------- Endereço: <%= pedido.address %> ---------- Horário do pedido: </h3>
                 <p>Detalhes do Pedido:</p>
                 <% pedido.order.forEach(function(item) { %>
-                    <p>SKU: <%= item.sku %></p>
-                    <p>Nome: <%= item.name %></p>
-                    <p>Quantidade: <%= item.qtd %></p>
+                    <p><strong>SKU: <%= item.sku %></strong></p>
+                    <p>Pizza: <%= item.name %> ------ Tamanho: <%= item.size %> </p> 
+                    <p>Preço: <%= item.price %> ------ Quantidade: <%= item.qtd %></p>
                     <p>Observações: <%= item.obs %></p>
+                    <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
                 <% }) %>
                 <form action="/accept" method="post">
                     <input type="hidden" name="id" value="<%= pedido._id %>">
