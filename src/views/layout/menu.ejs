@@ -13,7 +13,8 @@
         <ul>
             <li>
                 <a href="/home">
-                     <span class="nav-text">
+                    <i class="fa fa-home fa-2x"></i>
+                    <span class="nav-text">
                         Dashboard
                     </span>
                 </a>
@@ -21,7 +22,8 @@
             <li class="has-subnav">
                 <% if (locals.accessKey === 'S') { %>
                     <a href="/auth">
-                              <span class="nav-text">
+                        <i class="fa fa-globe fa-2x"></i>
+                        <span class="nav-text">
                             colocar permissão
                         </span>
                     </a>
@@ -30,7 +32,8 @@
             <li class="has-subnav">
                 <% if (locals.accessKey === 'S' ) { %>
                     <a href="/index">
-                                <span class="nav-text">
+                       <i class="fa fa-comments fa-2x"></i>
+                        <span class="nav-text">
                             tirar permissão
                         </span>
                     </a>
@@ -39,7 +42,8 @@
             <li>
                 <% if (locals.accessKey === 'S') { %>
                     <a href="/products">
-                             <span class="nav-text">
+                        <i class="fa fa-film fa-2x"></i>
+                        <span class="nav-text">
                             Produtos
                         </span>
                     </a>
@@ -48,7 +52,8 @@
             <li class="has-subnav">
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
                     <a href="/process">
-                                    <span class="nav-text">
+                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <span class="nav-text">
                             Aceitar pedidos
                         </span>
                     </a>
@@ -57,7 +62,8 @@
             <li class="has-subnav">
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
                     <a href="/requests">
-                                    <span class="nav-text">
+                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <span class="nav-text">
                             Pedidos
                         </span>
                     </a>
@@ -66,7 +72,8 @@
             <li>
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'C') { %>
                     <a href="/sending">
-                             <span class="nav-text">
+                        <i class="fa fa-book fa-2x"></i>
+                        <span class="nav-text">
                             Enviar
                         </span>
                     </a>
@@ -75,7 +82,8 @@
             <li>
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'B') { %>
                    <a href="/finish">
-                            <span class="nav-text">
+                       <i class="fa fa-cogs fa-2x"></i>
+                        <span class="nav-text">
                             Finalizados
                         </span>
                     </a>
@@ -84,7 +92,8 @@
             <li>
                 <% if (locals.accessKey === 'S' ) { %>
                    <a href="/accessKey">
-                                   <span class="nav-text">
+                        <i class="fa fa-map-marker fa-2x"></i>
+                        <span class="nav-text">
                             Accesskey
                         </span>
                     </a>
@@ -93,7 +102,8 @@
             <li>
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
                     <a href="/clientes">
-                            <span class="nav-text">
+                       <i class="fa fa-info fa-2x"></i>
+                        <span class="nav-text">
                             Clientes
                         </span>
                     </a>
@@ -102,7 +112,8 @@
             <li>
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'A') { %>
                     <a href="/contact">
-                            <span class="nav-text">
+                       <i class="fa fa-info fa-2x"></i>
+                        <span class="nav-text">
                             Contato
                         </span>
                     </a>
