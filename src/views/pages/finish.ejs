@@ -17,11 +17,11 @@
                 <h3>Nome do usuário: <%= finish.name %> ------Endereço do usuário: <%= finish.address %> </h3>
                 <p>Detalhes do Pedido:</p>
                 <% finish.order.forEach(function(item) { %>
-                    <p><strong>SKU: <%= item.sku %></strong></p>
-                    <p>Pizza: <%= item.name %> ------ Tamanho: <%= item.size %> </p> 
-                    <p>Preço: <%= item.price %> ------ Quantidade: <%= item.qtd %></p>
-                    <p>Observações: <%= item.obs %></p>
-                    <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
+                    <p><strong><%= item.sku %></strong></p>
+                    <p>Pizza: <strong><%= item.name %></strong> ------ Tamanho: <strong><%= item.size %></strong> </p> 
+                    <p>Preço: <strong><%= item.price %></strong> ------ Quantidade: <strong><%= item.qtd %></strong></p>
+                    <p>Observações: <strong><%= item.obs %></strong></p>
+                    <p><img src="<%= item.img %>" alt=""></p> <br>
                 <% }) %>
                 </div>
         </article>
