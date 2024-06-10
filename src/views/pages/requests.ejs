@@ -17,11 +17,11 @@
         <h3>Nome do usuário: <%= request.name %> ------Endereço do usuário: <%= request.address %> </h3>
         <p>Detalhes do Pedido:</p>
         <% request.order.forEach(function(item) { %>
-          <p><strong>SKU: <%= item.sku %></strong></p>
-          <p>Pizza: <%= item.name %> ------ Tamanho: <%= item.size %> </p> 
-          <p>Preço: <%= item.price %> ------ Quantidade: <%= item.qtd %></p>
-          <p>Observações: <%= item.obs %></p>
-          <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
+          <p><strong><%= item.sku %></strong></p>
+          <p>Pizza:<strong><%= item.name %></strong>  ------ Tamanho:<strong><%= item.size %></strong>  </p> 
+          <p>Preço:<strong><%= item.price %></strong>  ------ Quantidade: <strong><%= item.qtd %></strong></p>
+          <p>Observações:<strong><%= item.obs %></strong> </p>
+          <p>Imagem: <img src="<%= item.link %>" alt=""></p> <br>
         <% }) %>
         <form action="/sending" method="post">
           <input type="hidden" name="id" value="<%= request._id %>">
