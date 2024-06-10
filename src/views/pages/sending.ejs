@@ -15,18 +15,22 @@
         <article class="larg">
                 <div>
                 <h3>Nome: <%= sending.name %> ------ Endereço do usuário: <%= sending.address %></h3>
+                <form action="/finish" method="post">
+                    <input type="hidden" name="id" value="<%= sending._id %>">
+                    <button type="submit">Finalizar Entrega</button>
+                </form>
                 <p>Detalhes do Pedido:</p>
                 <% sending.order.forEach(function(item) { %>
                     <p><strong><%= item.sku %></strong></p>
                     <p>Pizza: <strong><%= item.name %></strong> ------ Tamanho: <strong><%= item.size %></strong> </p> 
                     <p>Preço: <strong><%= item.price %></strong> ------ Quantidade: <strong><%= item.qtd %></strong></p>
                     <p>Observações: <strong><%= item.obs %></strong></p>
-                    <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
+                    <p><img src="<%= item.link %>" alt=""></p> <br>
                 <% }) %>
-                <form action="/finish" method="post">
-                    <input type="hidden" name="id" value="<%= sending._id %>">
-                    <button type="submit">Finalizar Entrega</button>
-                </form>
+            <form action="/recuse" method="post">
+                <input type="hidden" name="id" value="<%= sending._id %>">
+                <button type="submit">Cancelar Pedido</button>
+            </form>
                 </div>
         </article>
     <% }) %>

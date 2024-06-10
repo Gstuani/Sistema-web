@@ -69,6 +69,25 @@ $(document).ready( function() {
     });
   });
 
+  $('body').on("click", "form[action='/recuse'] button[type='submit']", function(e){
+    e.preventDefault();
+    var form = $(this).closest('form');
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function() {
+        swal("Pedido cancelado!", "O pedido foi cancelado com sucesso!", "success")
+        .then((value) => {
+          location.reload();
+        });
+      },
+      error: function() {
+        swal("Erro!", "Houve um erro ao cancelar o pedido.", "error");
+      }
+    });
+  });
+
  $('.larg div').each(function(index) {
     var id = 'item-' + pagePath + '-' + index;
     $(this).data('id', id);

@@ -15,6 +15,10 @@
     <article class="larg">
         <div>
         <h3>Nome do usuário: <%= request.name %> ------Endereço do usuário: <%= request.address %> </h3>
+        <form action="/sending" method="post">
+          <input type="hidden" name="id" value="<%= request._id %>">
+          <button type="submit">Enviar Pedido</button>
+        </form>
         <p>Detalhes do Pedido:</p>
         <% request.order.forEach(function(item) { %>
           <p><strong><%= item.sku %></strong></p>
@@ -23,10 +27,10 @@
           <p>Observações:<strong><%= item.obs %></strong> </p>
           <p><img src="<%= item.link %>" alt=""></p> <br>
         <% }) %>
-        <form action="/sending" method="post">
+        <form action="/recuse" method="post">
           <input type="hidden" name="id" value="<%= request._id %>">
-          <button type="submit">Enviar Pedido</button>
-        </form>
+          <button type="submit">Cancelar Pedido</button>
+      </form>
         </div>
     </article>
   <% }) %>

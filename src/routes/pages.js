@@ -60,13 +60,23 @@ router.get('/home', ensureAuthenticated, async (req, res) => {
   
   router.get('/process', ensureAuthenticated, async (req, res) => {
     try {
-      const pedidos = await utils.findAsync(req.db, 'orders', { process: false });
+      const pedidos = await utils.findAsync(req.db, 'orders', { process: false, status: 'requests'});
       res.status(200).render('pages/process', { pedidos: pedidos });
      
     } catch (error) {
       console.log(error);
       res.status(500).render('pages/error', { error: '' });
     }
+});
+router.get('/recuse', ensureAuthenticated, async (req, res) => {
+  try {
+    const pedidos = await utils.findAsync(req.db, 'orders', {status: 'recused'});
+    res.status(200).render('pages/recuse', { pedidos: pedidos });
+   
+  } catch (error) {
+    console.log(error);
+    res.status(500).render('pages/error', { error: '' });
+  }
 });
 
 router.get('/requests', ensureAuthenticated, async (req, res) => {

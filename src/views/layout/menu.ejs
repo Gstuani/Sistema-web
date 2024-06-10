@@ -89,6 +89,16 @@
                     </a>
                 <% } %>
             </li>
+            <li class="has-subnav">
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
+                    <a href="/recuse">
+                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <span class="nav-text">
+                            Pedidos recusados
+                        </span>
+                    </a>
+                <% } %>
+            </li>
             <li>
                 <% if (locals.accessKey === 'S' ) { %>
                    <a href="/accessKey">

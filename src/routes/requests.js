@@ -7,12 +7,26 @@ const { ObjectId } = require('mongodb');
 router.post('/accept', ensureAuthenticated, async (req, res) => {
   try {
     const { id } = req.body;
-
-    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: { process: true } });
+    const newStatus = 'requests';
+    const newStatusText = 'Em Andamento';
+    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: { process: true, status: newStatus, statusText: newStatusText } });
     res.redirect('back');
   } catch (error) {
     console.log(error);
     res.status(500).send({ message: 'Erro ao aceitar o pedido.' });
+  }
+});
+
+router.post('/recuse', ensureAuthenticated, async (req, res) => {
+  try {
+    const { id } = req.body;
+    const newStatus = 'recused';
+    const newStatusText = 'Pedido cancelado';
+    const result = await req.db.collection('orders').updateOne({ _id: new ObjectId(id) }, { $set: {process: false, status: newStatus, statusText: newStatusText } });
+    res.redirect('back');
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: 'Erro ao recusar o pedido.' });
   }
 });
 
