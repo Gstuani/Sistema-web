@@ -17,11 +17,11 @@
                 <h3>Nome: <%= pedido.name %> ---------- Endereço: <%= pedido.address %> ---------- Horário do pedido: </h3>
                 <p>Detalhes do Pedido:</p>
                 <% pedido.order.forEach(function(item) { %>
-                    <p><strong>SKU: <%= item.sku %></strong></p>
-                    <p>Pizza: <%= item.name %> ------ Tamanho: <%= item.size %> </p> 
-                    <p>Preço: <%= item.price %> ------ Quantidade: <%= item.qtd %></p>
-                    <p>Observações: <%= item.obs %></p>
-                    <p>Imagem: <img src="<%= item.img %>" alt=""></p> <br>
+                    <p><strong><%= item.sku %></strong></p>
+                    <p>Pizza: <strong><%= item.name %></strong> ------ Tamanho: <strong><%= item.size %> </strong></p> 
+                    <p>Preço: <strong><%= item.price %></strong> ------ Quantidade: <strong><%= item.qtd %></strong></p>
+                    <p>Observações:<strong> <%= item.obs %></strong></p>
+                    <p>Imagem: <img src="<%= item.link %>" alt=""></p> <br>
                 <% }) %>
                 <form action="/accept" method="post">
                     <input type="hidden" name="id" value="<%= pedido._id %>">
