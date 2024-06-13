@@ -14,8 +14,8 @@
   <% requests.forEach(function(request) { %>
     <article class="larg">
         <div>
-        <h3>Nome do usuário: <%= request.name %> ------Endereço do usuário: <%= request.address %> </h3>
-        <form action="/sending" method="post">
+          <h3>Nome: <%= request.name %> ---------- <%= request.Address ? request.Address.address + ' + ' + request.Address.address2 : 'Endereço não disponível' %><br>Método de pagamento: <%= request.paymentMethod %> <br>Total: <%= request.total %></h3><br>
+          <form action="/sending" method="post">
           <input type="hidden" name="id" value="<%= request._id %>">
           <button type="submit">Enviar Pedido</button>
         </form>

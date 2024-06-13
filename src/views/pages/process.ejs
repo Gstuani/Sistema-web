@@ -14,8 +14,8 @@
     <% pedidos.forEach(function(pedido) { %>
         <article class="larg">
                 <div>
-                <h3>Nome: <%= pedido.name %> ---------- Endereço: <%= pedido.address %> ---------- Horário do pedido: </h3>
-                <form action="/accept" method="post">
+                    <h3>Nome: <%= pedido.name %> ---------- <%= pedido.Address ? pedido.Address.address + ' + ' + pedido.Address.address2 : 'Endereço não disponível' %><br>Método de pagamento: <%= pedido.paymentMethod %> <br>Total: <%= pedido.total %></h3><br>
+                    <form action="/accept" method="post">
                     <input type="hidden" name="id" value="<%= pedido._id %>">
                     <button type="submit">Aceitar Pedido</button>
                 </form>

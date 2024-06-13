@@ -14,8 +14,8 @@
     <% finished.forEach(function(finish) { %>
         <article class="larg">
                 <div>
-                <h3>Nome do usuário: <%= finish.name %> ------Endereço do usuário: <%= finish.address %> </h3>
-                <p>Detalhes do Pedido:</p>
+                    <h3>Nome: <%= finish.name %> ---------- <%= finish.Address ? finish.Address.address + ' + ' + finish.Address.address2 : 'Endereço não disponível' %><br>Método de pagamento: <%= finish.paymentMethod %> <br>Total: <%= finish.total %></h3><br>
+                    <p>Detalhes do Pedido:</p>
                 <% finish.order.forEach(function(item) { %>
                     <p><strong><%= item.sku %></strong></p>
                     <p>Pizza: <strong><%= item.name %></strong> ------ Tamanho: <strong><%= item.size %></strong> </p> 
