@@ -6,7 +6,7 @@
   <main>
     <div class="title1">
       <h2><%= title1 %></h2>
-      <a href="javascript:void(0);">Hello </a>
+      <a href="javascript:void(0);">Bem-vindo, <%= userName %>!</a>
     </div>
 
     <nav class="main-menu">
@@ -44,7 +44,7 @@
                    <a href="/accessKey">
                         <i class="fa fa-map-marker fa-2x"></i>
                         <span class="nav-text">
-                            CHave de acesso
+                            Chave de acesso
                         </span>
                     </a>
                 <% } %>
@@ -90,7 +90,7 @@
                 <% } %>
             </li>
             <li>
-                <% if (locals.accessKey === 'S' || locals.accessKey === 'B') { %>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'B'|| locals.accessKey === 'C') { %>
                    <a href="/finish">
                        <i class="fa fa-cogs fa-2x"></i>
                         <span class="nav-text">
@@ -100,7 +100,7 @@
                 <% } %>
             </li>
             <li class="has-subnav">
-                <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
+                <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D' || locals.accessKey === 'C') { %>
                     <a href="/recuse">
                        <i class="fa fa-camera-retro fa-2x"></i>
                         <span class="nav-text">

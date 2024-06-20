@@ -24,6 +24,7 @@ router.post('/login', async (req, res) => {
   }
   try {
     req.session.user = user;
+    req.session.userName = user.name;
     return res.status(200).redirect('/home');
   } catch (error) {
     return res.render('pages/login', { messages: { error: 'Erro ao fazer login' }, email });

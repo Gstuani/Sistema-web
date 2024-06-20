@@ -16,7 +16,7 @@ function ensureAuthenticated(req, res, next) {
 
         const accessRules = {
             'D': ['/home', '/logout', '/requests', '/process', '/accept', '/sending', '/recuse' ],
-            'C': ['/home', '/logout', '/sending', '/finish', '/recuse'],
+            'C': ['/home', '/logout', '/sending', '/finish', '/recuse', '/accept'],
             'B': ['/home', '/logout', '/requests', '/sending', '/finish', '/process', '/accept', '/recuse'],
             'A': ['/home', '/logout', '/clientes', '/contact'],
         };
