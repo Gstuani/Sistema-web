@@ -40,6 +40,16 @@
                 <% } %>
             </li>
             <li>
+                <% if (locals.accessKey === 'S' ) { %>
+                   <a href="/accessKey">
+                        <i class="fa fa-map-marker fa-2x"></i>
+                        <span class="nav-text">
+                            CHave de acesso
+                        </span>
+                    </a>
+                <% } %>
+            </li>
+            <li>
                 <% if (locals.accessKey === 'S') { %>
                     <a href="/products">
                         <i class="fa fa-film fa-2x"></i>
@@ -52,7 +62,7 @@
             <li class="has-subnav">
                 <% if (locals.accessKey === 'S' || locals.accessKey === 'B' || locals.accessKey === 'D') { %>
                     <a href="/process">
-                       <i class="fa fa-camera-retro fa-2x"></i>
+                        <i class="fa fa-camera-retro fa-2x"></i>
                         <span class="nav-text">
                             Aceitar pedidos
                         </span>
@@ -95,16 +105,6 @@
                        <i class="fa fa-camera-retro fa-2x"></i>
                         <span class="nav-text">
                             Pedidos recusados
-                        </span>
-                    </a>
-                <% } %>
-            </li>
-            <li>
-                <% if (locals.accessKey === 'S' ) { %>
-                   <a href="/accessKey">
-                        <i class="fa fa-map-marker fa-2x"></i>
-                        <span class="nav-text">
-                            Accesskey
                         </span>
                     </a>
                 <% } %>
