@@ -15,28 +15,29 @@
     <!-- Section: Design Block -->
 <section class="background-radial-gradient overflow-hidden">
     <style>
+      :root{
+    --cor-1:#DCC08E;
+    --cor-2:#931F1D;
+    --cor-3:#66110f;
+    --cor-4:#41521F;
+    --cor-5:#516822;
+    --cor-6:#67852a;
+    --cor-7:#FFC40C;
+    --cor-8:whitesmoke;
+    --cor-9:black;
+    }
       .background-radial-gradient {
-        background-color: hsl(37, 100%, 48%);
-        background-image: radial-gradient(650px circle at 0% 0%,
-            hsl(50, 89%, 50%) 15%,
-            hsl(36, 90%, 48%) 35%,
-            hsl(37, 100%, 48%) 75%,
-            hsl(37, 100%, 48%) 80%,
-            transparent 100%),
-          radial-gradient(1250px circle at 100% 100%,
-            hsl(35, 85%, 48%) 15%,
-            hsl(35, 100%, 41%) 35%,
-            hsl(43, 100%, 54%) 75%,
-            hsl(26, 100%, 52%) 80%,
-            transparent 100%);
-      }
+          background-color: var(--cor-1);
+          background-image: radial-gradient(650px circle at 0% 0%,
+              transparent 100%)
+        }
   
       #radius-shape-1 {
         height: 220px;
         width: 220px;
         top: -60px;
         left: -130px;
-        background: radial-gradient(#ee7300, #ee7300);
+        background: radial-gradient(var(--cor-3), var(--cor-3));
         overflow: hidden;
       }
   
@@ -46,16 +47,16 @@
         right: -110px;
         width: 300px;
         height: 300px;
-        background: radial-gradient(#fee106, #fee106);
+        background: radial-gradient(var(--cor-3), var(--cor-3));
         overflow: hidden;
       }
 
       .btn-btn-primary-btn-block-mb-4{
-        background-color: #ee7300;
+        background-color: var(--cor-3);
       }
   
       .bg-glass {
-        background-color: hsla(0, 0%, 100%, 0.9) !important;
+        background-color:var(--cor-4) !important;
         backdrop-filter: saturate(200%) blur(25px);
       }
     </style>
@@ -63,11 +64,11 @@
     <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
       <div class="row gx-lg-5 align-items-center mb-5">
         <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
-          <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(0, 0%, 100%)">
+          <h1 class="my-5 display-5 fw-bold ls-tight" style="color:var(--cor-4);">
             Bem vindo o(a) <br />
-            <span style="color: hsl(14, 100%, 54%)">Pizzaria FORNÉ</span>
+            <span style="color: var(--cor-3)">Pizzaria Boun Sapoure</span>
           </h1>
-          <p class="mb-4 opacity-70" style="color: hsl(0, 0%, 100%)">
+          <p class="mb-4 opacity-70" style="color: var(--cor-4);font-weight: 700;font-size: 20px;">
             Site administração da pizzaria
           </p>
         </div>
@@ -87,48 +88,48 @@
                       <strong><%= messages.error %> </strong>
                     </div>
                   <% } %> 
-                  <h1 class="mb-3 h3">Cadastro</h1>
+                  <h1 class="mb-3 h3" style="color: var(--cor-8);">Cadastro</h1>
                   <!-- Nome completo input -->
                   <div class="col-md-12 mb-4">
                     <div class="form-outline">
-                      <label class="form-label" for="form3Example2">Nome completo</label>
+                      <label class="form-label" for="form3Example2" style="color: var(--cor-8);">Nome completo</label>
                       <input type="text" name="name" id="form3Example2" class="form-control" value="<%= locals.name || '' %>" />
                     </div>
                   </div>
 
                   <!-- Email input -->
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example3">Endereço de email</label>
-                    <input type="email" name="email" placeholder="Após o envio, um email será enviado no seu email para verificação." id="form3Example3" class="form-control" value="<%= locals.email || '' %>" />
+                    <label class="form-label" for="form3Example3" style="color: var(--cor-8);">Endereço de email</label>
+                    <input type="email" name="email" placeholder="Após o envio, será enviado uma verificação no seu email." id="form3Example3" class="form-control" value="<%= locals.email || '' %>" />
                   </div>
 
                   <!-- Função input -->
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example5">Função</label>
+                    <label class="form-label" for="form3Example5" style="color: var(--cor-8);">Função</label>
                     <input type="text" name="func" id="form3Example5" class="form-control" value="<%= locals.func || '' %>" />
                   </div>
 
                   <!-- Senha input -->
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example4">Senha</label>
+                    <label class="form-label" for="form3Example4" style="color: var(--cor-8);">Senha</label>
                     <input type="password" name="password" id="form3Example4" class="form-control" />
                   </div>
 
 
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form3Example4">Confirmar Senha</label>
+                    <label class="form-label" for="form3Example4" style="color: var(--cor-8);">Confirmar Senha</label>
                     <input type="password" name="password2" id="form3Example4" class="form-control" />
                   </div>
                   
                 <!-- Submit button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">
+                <button type="submit" class="btn btn-primary btn-block mb-4" style="background-color: var(--cor-3); border: var(--cor-3);">
                   Cadastrar
                 </button>
   
                 <!-- Register buttons -->
                 <div class="text-center">
-                  <p>Já tem uma conta? <a href="/login">Login</a></p>
-                  <p><a href="/recuperar">Esqueceu a senha?</a></p>
+                  <p style="color: var(--cor-8);">Já tem uma conta? <a href="/login" style="text-decoration: none; font-weight: 800; color: var(--cor-3);">Login</a></p>
+                  <p><a href="/recuperar" style="text-decoration: none; font-weight: 800; color: var(--cor-3);">Esqueceu a senha?</a></p>
                 
                 </div>
               </form>
